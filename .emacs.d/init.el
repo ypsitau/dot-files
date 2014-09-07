@@ -1,6 +1,6 @@
 (setq default-frame-alist
       (append (list '(top . 0) '(left . 0)
-                    '(width . 90) '(height . 42)
+                    '(width . 90) '(height . 45)
                )
               default-frame-alist))
 
