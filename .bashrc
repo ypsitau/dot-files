@@ -7,4 +7,3 @@ fi
 PS1="\w\$ "
 alias ll='ls -alF'
 export GURAPATH=gnuc
-export PATH=$PATH:/Applications/CMake.app/Contents/bin
