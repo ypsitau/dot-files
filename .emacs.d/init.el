@@ -38,10 +38,18 @@
 			   (setq tab-width 4)
                (setq c-basic-offset 4))))
 
+;; Too see what variable affectes indentation, type \C-C \C-S.
+(define-derived-mode gura-mode c-mode "Gura"
+  "Major mode for Gura.
+\\{gura-mode-map}"
+  (c-set-offset 'statement-cont 0)
+  (c-set-offset 'topmost-intro-cont 0))
+
 (setq auto-mode-alist
-      (append '(("\\.gura$" . c++-mode)
-				("\\.guraw$" . c++-mode)
+      (append '(("\\.gura$" . gura-mode)
+				("\\.guraw$" . gura-mode)
                 ) auto-mode-alist))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
