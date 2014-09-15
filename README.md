@@ -1,4 +1,4 @@
-darwin-settings
+dotfiles-darwin
 ===============
 
-confiugration files for Darwin platform
+Confiugration files for Darwin platform

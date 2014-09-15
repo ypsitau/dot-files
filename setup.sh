@@ -13,5 +13,5 @@ for f in $files; do
 	else
 		echo link $f was newly created.
 	fi
-	ln -s darwin-settings/$f ~/$f
+	ln -s dotfiles-darwin/$f ~/$f
 done
