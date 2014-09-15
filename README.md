@@ -1,5 +1,5 @@
-dotfiles-darwin
-===============
+Darwin Personal Settings for ypsitau
+====================================
 
 Confiugration files for Darwin platform. To setup it, do the following commands:
 
