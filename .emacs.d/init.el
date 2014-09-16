@@ -4,6 +4,8 @@
                )
               default-frame-alist))
 
+(add-to-list 'load-path "~/.emacs.d")
+
 (if window-system
   (progn
     (scroll-bar-mode nil)
@@ -39,16 +41,16 @@
                (setq c-basic-offset 4))))
 
 ;; Too see what variable affectes indentation, type \C-C \C-S.
-(define-derived-mode gura-mode c-mode "Gura"
+(define-derived-mode gura-gura-mode c-mode "Gura"
   "Major mode for Gura.
 \\{gura-mode-map}"
   (c-set-offset 'statement-cont 0)
   (c-set-offset 'topmost-intro-cont 0))
 
-(setq auto-mode-alist
-      (append '(("\\.gura$" . gura-mode)
-				("\\.guraw$" . gura-mode)
-                ) auto-mode-alist))
+(require 'gura-mode)
+
+(add-to-list 'auto-mode-alist '("\\.gura$" . gura-mode))
+(add-to-list 'auto-mode-alist '("\\.guraw$" . gura-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
