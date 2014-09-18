@@ -44,6 +44,3 @@
                (setq c-basic-offset 4))))
 
 (require 'gura-mode)
-
-(add-to-list 'auto-mode-alist '("\\.gura$" . gura-mode))
-(add-to-list 'auto-mode-alist '("\\.guraw$" . gura-mode))

@@ -77,4 +77,7 @@
 		  (indent-line-to cur-indent)
 		(indent-line-to 0)))))
 
+(add-to-list 'auto-mode-alist '("\\.gura$" . gura-mode))
+(add-to-list 'auto-mode-alist '("\\.guraw$" . gura-mode))
+
 (provide 'gura-mode)
