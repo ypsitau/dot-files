@@ -23,6 +23,9 @@
 				 "true" "false" "nil"
 				 ) symbol-end)
 		   (0 font-lock-constant-face))
+		  ;; symbol name
+		  (,(rx "`" (1+ word))
+		   (0 font-lock-variable-name-face))
 		  ;; function name
 		  (,(rx symbol-start (group (1+ word)) (0+ space) "(")
 		   (1 font-lock-function-name-face))
@@ -38,8 +41,8 @@
   (define-derived-mode gura-mode fundamental-mode "Gura"
 	"Major mode for editing Gura programming language."
 	(let ((st gura-mode-syntax-table))
-	  (modify-syntax-entry ?# "<" st)
-	  (modify-syntax-entry ?\n ">" st)
+	  (modify-syntax-entry ?# "< b" st)
+	  (modify-syntax-entry ?\n "> b" st)
 	  (modify-syntax-entry ?' "\"" st)
 	  (modify-syntax-entry ?_ "w" st)
 	  (modify-syntax-entry ?$ "w" st)
