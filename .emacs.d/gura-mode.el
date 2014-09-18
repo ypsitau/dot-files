@@ -38,6 +38,34 @@
 		  ("^\\(=\\)\\sw" (1 "< b"))
 		  ))
 
+  (defun gura-indent-line ()
+	"Indent current line of Gura code."
+	(interactive)
+	(beginning-of-line)
+	(let ((indent-to-set nil))
+	  (if (looking-at ".*}")
+		  (save-excursion
+			(forward-line -1)
+			(if (looking-at ".*{")
+				(setq indent-to-set (current-indentation))
+			  (setq indent-to-set (- (current-indentation) default-tab-width))))
+		(save-excursion
+		  (let ((continue-flag t))
+			(while continue-flag
+			  (forward-line -1)
+			  (if (looking-at ".*}")
+				  (progn
+					(setq indent-to-set (current-indentation))
+					(setq continue-flag nil))
+				(if (looking-at ".*{")
+					(progn
+					  (setq indent-to-set (+ (current-indentation) default-tab-width))
+					  (setq continue-flag nil))))
+			  (if (bobp) (setq continue-flag nil)))
+			)))
+	  (if indent-to-set (indent-line-to (max 0 indent-to-set)))
+	  ))
+
   (define-derived-mode gura-mode fundamental-mode "Gura"
 	"Major mode for editing Gura programming language."
 	(let ((st gura-mode-syntax-table))
@@ -57,9 +85,11 @@
 
 (defun foo ()
   (interactive)
+  ;;(print (current-indentation)))
   (gura-indent-line))
 
-(defun gura-indent-line ()
+
+(defun gura-indent-line-1 ()
   "Indent current line of Gura code."
   (interactive)
   (beginning-of-line)
