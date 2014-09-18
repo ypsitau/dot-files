@@ -8,17 +8,24 @@
 (progn
   (setq gura-font-lock-defaults
 	`(
+	  ;; function names for control sequence
 	  (,(rx symbol-start (or
 						  "if" "elsif" "else" "try" "catch"
 						  "repeat" "while" "cross" "break" "continue" "return"
 						  "module" "class" "import"
-						  ) symbol-end) . font-lock-keyword-face)
+						  ) symbol-end)
+	   (0 font-lock-keyword-face))
+	  ;; constant variables
 	  (,(rx symbol-start (or
 						  "true" "false" "nil"
-						  ) symbol-end) . font-lock-constant-face)))
-	
-
-  gura-font-lock-defaults
+						  ) symbol-end)
+	   (0 font-lock-constant-face))
+	  (,(rx symbol-start (group (1+ (or word ?_))) (0+ space) "(")
+	   (1 font-lock-function-name-face))
+	  ;; top-level assignment
+	  (,(rx line-start (group (1+ (or word ?_))) (0+ space) "=")
+	   (1 font-lock-variable-name-face))))
+  
   (define-derived-mode gura-mode prog-mode "Gura"
 	"Major mode for editing Gura programming language."
 	(modify-syntax-entry ?_ "w" gura-mode-syntax-table)
@@ -26,6 +33,7 @@
 	(modify-syntax-entry ?* ". 23" gura-mode-syntax-table)
 	(modify-syntax-entry ?\n "> b" gura-mode-syntax-table)
 	(set (make-local-variable 'font-lock-defaults) '(gura-font-lock-defaults))))
+
 
 (defun gura-indent-line ()
   "Indent current line of Gura code."
