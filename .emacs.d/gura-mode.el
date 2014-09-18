@@ -41,13 +41,14 @@
   (define-derived-mode gura-mode fundamental-mode "Gura"
 	"Major mode for editing Gura programming language."
 	(let ((st gura-mode-syntax-table))
-	  (modify-syntax-entry ?# "< b" st)
-	  (modify-syntax-entry ?\n "> b" st)
 	  (modify-syntax-entry ?' "\"" st)
 	  (modify-syntax-entry ?_ "w" st)
 	  (modify-syntax-entry ?$ "w" st)
-	  (modify-syntax-entry ?/ ". 124b" st)
-	  (modify-syntax-entry ?* ". 23" st))
+	  ;; comment syntax
+	  (modify-syntax-entry ?# "<" st)
+	  (modify-syntax-entry ?/ ". 124" st)
+	  (modify-syntax-entry ?* ". 23b" st)
+	  (modify-syntax-entry ?\n ">" st))
 	(set (make-local-variable 'font-lock-defaults)
 		 '(gura-font-lock-keywords
 		   nil nil nil nil
