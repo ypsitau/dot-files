@@ -49,10 +49,15 @@
 	  (modify-syntax-entry ?/ ". 124" st)
 	  (modify-syntax-entry ?* ". 23b" st)
 	  (modify-syntax-entry ?\n ">" st))
+	(set (make-local-variable 'indent-line-function) 'gura-indent-line)
 	(set (make-local-variable 'font-lock-defaults)
 		 '(gura-font-lock-keywords
 		   nil nil nil nil
 		   (font-lock-syntactic-keywords . gura-font-lock-syntactic-keywords)))))
+
+(defun foo ()
+  (interactive)
+  (gura-indent-line))
 
 (defun gura-indent-line ()
   "Indent current line of Gura code."
@@ -61,7 +66,7 @@
   (if (bobp)
 	  (indent-line-to 0)
 	(let ((not-indented t) cur-indent)
-	  (if (looking-at "^[ \t]*END_")
+	  (if (looking-at "}")
 		  (progn
 			(save-excursion
 			  (forward-line -1)
@@ -71,11 +76,11 @@
 		(save-excursion
 		  (while not-indented
 			(forward-line -1)
-			(if (looking-at "^[ \t]*END_")
+			(if (looking-at "}")
 				(progn
 				  (setq cur-indent (current-indentation))
 				  (setq not-indented nil))
-			  (if (looking-at "^[ \t]*\\(PARTICIPANT\\|MODEL\\|APPLICATION\\|WORKFLOW\\|ACTIVITY\\|DATA\\|TOOL_LIST\\|TRANSITION\\)")
+			  (if (looking-at "{")
 				  (progn
 					(setq cur-indent (+ (current-indentation) default-tab-width))
 					(setq not-indented nil))
