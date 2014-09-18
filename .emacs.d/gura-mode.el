@@ -6,17 +6,19 @@
   "Keymap for `gura-mode'.")
 
 (progn
-  (defconst gura-font-lock-defaults
-	'(
-	  ("\\<\\(if\\|elsif\\|else\\)\\>" . font-lock-keyword-face)
-	  ("\\<\\(try\\|catch\\)\\>" . font-lock-keyword-face)
-	  ("\\<\\(repeat\\|while\\|cross\\)\\>" . font-lock-keyword-face)
-	  ("\\<\\(break\\|continue\\|return\\)\\>" . font-lock-keyword-face)
-	  ("\\<\\(module\\|class\\|import\\)\\>" . font-lock-keyword-face)
-	  ("\\<\\(true\\|false\\|nil\\)\\>" . font-lock-constant-face)
-	  ("\\<\\(\\w+\\)\\>" . font-lock-variable-name-face)
-	  ))
+  (setq gura-font-lock-defaults
+	`(
+	  (,(rx symbol-start (or
+						  "if" "elsif" "else" "try" "catch"
+						  "repeat" "while" "cross" "break" "continue" "return"
+						  "module" "class" "import"
+						  ) symbol-end) . font-lock-keyword-face)
+	  (,(rx symbol-start (or
+						  "true" "false" "nil"
+						  ) symbol-end) . font-lock-constant-face)))
+	
 
+  gura-font-lock-defaults
   (define-derived-mode gura-mode prog-mode "Gura"
 	"Major mode for editing Gura programming language."
 	(modify-syntax-entry ?_ "w" gura-mode-syntax-table)
