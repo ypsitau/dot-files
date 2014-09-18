@@ -1,41 +1,49 @@
 ;;; gura-mode.el --- Gura major mode
 
-(defvar gura-mode-map
-  (let ((map (make-sparse-keymap)))
-	map)
-  "Keymap for `gura-mode'.")
 
 (progn
-  (setq gura-font-lock-defaults
-	`(
-	  ;; function names for control sequence
-	  (,(rx symbol-start
-			(or
-			 "if" "elsif" "else" "try" "catch"
-			 "repeat" "while" "cross" "break" "continue" "return"
-			 "module" "class" "import"
-			 ) symbol-end)
-	   (0 font-lock-keyword-face))
-	  ;; constant variables
-	  (,(rx symbol-start
-			(or
-			 "true" "false" "nil"
-			 ) symbol-end)
-	   (0 font-lock-constant-face))
-	  ;; function name
-	  (,(rx symbol-start (group (1+ word)) (0+ space) "(")
-	   (1 font-lock-function-name-face))
-	  ;; top-level assignment
-	  (,(rx line-start (group (1+ word)) (0+ space) "=")
-	   (1 font-lock-variable-name-face))))
-  
+  (defvar gura-mode-map
+	(let ((map (make-sparse-keymap)))
+	  map)
+	"Keymap for gura-mode.")
+
+  (setq gura-font-lock-keywords
+		`(
+		  ;; function names for control sequence
+		  (,(rx symbol-start
+				(or
+				 "if" "elsif" "else" "try" "catch"
+				 "repeat" "while" "cross" "break" "continue" "return"
+				 "module" "class" "import"
+				 ) symbol-end)
+		   (0 font-lock-keyword-face))
+		  ;; constant variables
+		  (,(rx symbol-start
+				(or
+				 "true" "false" "nil"
+				 ) symbol-end)
+		   (0 font-lock-constant-face))
+		  ;; function name
+		  (,(rx symbol-start (group (1+ word)) (0+ space) "(")
+		   (1 font-lock-function-name-face))
+		  ;; top-level assignment
+		  (,(rx line-start (group (1+ word)) (0+ space) "=")
+		   (1 font-lock-variable-name-face))))
+
+  (setq gura-font-lock-syntactic-keywords
+		`(
+		  ("^\\(=\\)\\sw" (1 "< b"))
+		  ))
+
   (define-derived-mode gura-mode prog-mode "Gura"
 	"Major mode for editing Gura programming language."
 	(modify-syntax-entry ?/ ". 124b" gura-mode-syntax-table)
 	(modify-syntax-entry ?* ". 23" gura-mode-syntax-table)
 	(modify-syntax-entry ?\n "> b" gura-mode-syntax-table)
 	(set (make-local-variable 'font-lock-defaults)
-		 '(gura-font-lock-defaults nil nil ((?_ . "w") (?$ . "w"))))))
+		 '(gura-font-lock-keywords
+		   nil nil ((?_ . "w") (?$ . "w")) nil
+		   (font-lock-syntactic-keywords . gura-font-lock-syntactic-keywords)))))
 
 
 (defun gura-indent-line ()
