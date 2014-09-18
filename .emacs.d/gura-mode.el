@@ -35,16 +35,20 @@
 		  ("^\\(=\\)\\sw" (1 "< b"))
 		  ))
 
-  (define-derived-mode gura-mode prog-mode "Gura"
+  (define-derived-mode gura-mode fundamental-mode "Gura"
 	"Major mode for editing Gura programming language."
-	(modify-syntax-entry ?/ ". 124b" gura-mode-syntax-table)
-	(modify-syntax-entry ?* ". 23" gura-mode-syntax-table)
-	(modify-syntax-entry ?\n "> b" gura-mode-syntax-table)
+	(let ((st gura-mode-syntax-table))
+	  (modify-syntax-entry ?# "<" st)
+	  (modify-syntax-entry ?\n ">" st)
+	  (modify-syntax-entry ?' "\"" st)
+	  (modify-syntax-entry ?_ "w" st)
+	  (modify-syntax-entry ?$ "w" st)
+	  (modify-syntax-entry ?/ ". 124b" st)
+	  (modify-syntax-entry ?* ". 23" st))
 	(set (make-local-variable 'font-lock-defaults)
 		 '(gura-font-lock-keywords
-		   nil nil ((?_ . "w") (?$ . "w")) nil
+		   nil nil nil nil
 		   (font-lock-syntactic-keywords . gura-font-lock-syntactic-keywords)))))
-
 
 (defun gura-indent-line ()
   "Indent current line of Gura code."
