@@ -83,6 +83,17 @@
 
 (defun gura-calculate-indentation ()
   "Return the column to which the current line should be indented."
+  (let* ((line-cur (line-number-at-pos)) (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
+	(if pos-block-start
+		(save-excursion
+		  (goto-char pos-block-start)
+		  (if (= line-cur (line-number-at-pos))
+			  (current-indentation)
+			(+ (current-indentation) default-tab-width)))
+	  0)))
+
+(defun gura-calculate-indentation-1 ()
+  "Return the column to which the current line should be indented."
   (save-excursion
 	(beginning-of-line)
 	(let ((indent 0))
