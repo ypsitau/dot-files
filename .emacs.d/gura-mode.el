@@ -1,19 +1,19 @@
 ;;; gura-mode.el --- Gura major mode
 
-(makunbound 'gura-hoge)
-(makunbound 'gura-font-lock-keywords)
-(makunbound 'gura-font-lock-syntactic-keywords)
-(makunbound 'gura-mode-syntax-table)
-(makunbound 'gura-imenu-generic-expression)
-(makunbound 'gura-outline-regexp)
+;;(makunbound 'gura-mode-map)
+;;(makunbound 'gura-mode-syntax-table)
+;;(makunbound 'gura-font-lock-keywords)
+;;(makunbound 'gura-imenu-generic-expression)
+;;(makunbound 'gura-outline-regexp)
 
 (defun gura-brace-close ()
   (interactive)
-  (insert "**"))
+  (insert "}")
+  (gura-indent-line))
 
 (defvar gura-mode-map
   (let ((map (make-sparse-keymap)))
-	;;(define-key map "}"		'gura-brace-close)
+	(define-key map "}"		'gura-brace-close)
 	map)
   "Keymap for `gura-mode'.")
 
@@ -63,15 +63,13 @@
 (defvar gura-outline-regexp
   )
 
-(define-derived-mode gura-mode fundamental-mode "Gura"
+(define-derived-mode gura-mode prog-mode "Gura"
   "Major mode for editing Gura programming language."
-  :syntax-table gura-mode-syntax-table
+  (set-syntax-table gura-mode-syntax-table)
   (use-local-map (nconc (make-sparse-keymap) gura-mode-map))
   (set (make-local-variable 'indent-line-function) 'gura-indent-line)
   (set (make-local-variable 'font-lock-defaults)
-	   '(gura-font-lock-keywords
-		 nil nil nil nil
-		 (font-lock-syntactic-keywords . gura-font-lock-syntactic-keywords))))
+	   '(gura-font-lock-keywords nil nil nil nil)))
 
 (defun gura-indent-line ()
   "Indent current line of Gura code."
@@ -85,28 +83,29 @@
 
 (defun gura-calculate-indentation ()
   "Return the column to which the current line should be indented."
-  (let ((indent-to-set (current-indentation)))
-	(if (looking-at ".*}")
-		(save-excursion
-		  (forward-line -1)
-		  (if (looking-at ".*{")
-			  (setq indent-to-set (current-indentation))
-			(setq indent-to-set (- (current-indentation) default-tab-width))))
-	  (save-excursion
-		(let ((continue-flag t))
-		  (while continue-flag
+  (save-excursion
+	(beginning-of-line)
+	(let ((indent 0))
+	  (if (looking-at ".*}")
+		  (save-excursion
 			(forward-line -1)
-			(if (looking-at ".*}")
-				(progn
-				  (setq indent-to-set (current-indentation))
-				  (setq continue-flag nil))
-			  (if (looking-at ".*{")
+			(if (looking-at ".*{")
+				(setq indent (current-indentation))
+			  (setq indent (- (current-indentation) default-tab-width))))
+		(save-excursion
+		  (let ((continue-flag t))
+			(while continue-flag
+			  (forward-line -1)
+			  (if (looking-at ".*}")
 				  (progn
-					(setq indent-to-set (+ (current-indentation) default-tab-width))
-					(setq continue-flag nil))))
-			(if (bobp) (setq continue-flag nil)))
-		  )))
-	indent-to-set))
+					(setq continue-flag nil))
+				(if (looking-at ".*{")
+					(progn
+					  (setq indent (+ (current-indentation) default-tab-width))
+					  (setq continue-flag nil))))
+			  (if (bobp) (setq continue-flag nil)))
+			)))
+	  indent)))
 
 (defun foo ()
   (interactive)
