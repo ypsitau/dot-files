@@ -1,6 +1,6 @@
 ;;; gura-mode.el --- Gura major mode
 
-;;(makunbound 'gura-mode-map)
+(makunbound 'gura-mode-map)
 ;;(makunbound 'gura-mode-syntax-table)
 ;;(makunbound 'gura-font-lock-keywords)
 ;;(makunbound 'gura-imenu-generic-expression)
@@ -11,9 +11,21 @@
   (insert "}")
   (gura-indent-line))
 
+(defun gura-paren-close ()
+  (interactive)
+  (insert ")")
+  (gura-indent-line))
+
+(defun gura-bracket-close ()
+  (interactive)
+  (insert "]")
+  (gura-indent-line))
+
 (defvar gura-mode-map
   (let ((map (make-sparse-keymap)))
 	(define-key map "}"		'gura-brace-close)
+	(define-key map ")"		'gura-paren-close)
+	(define-key map "]"		'gura-bracket-close)
 	map)
   "Keymap for `gura-mode'.")
 
