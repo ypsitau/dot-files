@@ -96,11 +96,13 @@
 (defun gura-calculate-indentation ()
   "Return the column to which the current line should be indented."
   (setq indent-offset 0)
+  ;; Check if preceding lines end with a backslash
   (save-excursion
 	(forward-line -1)
 	(while (looking-at ".*\\\\\\s-*$")
 	  (setq indent-offset default-tab-width)
 	  (forward-line -1)))
+  ;; Indentation for block
   (let* ((line-cur (line-number-at-pos))
 		 (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
 	(if pos-block-start
