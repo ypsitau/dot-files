@@ -6,26 +6,20 @@
 ;;(makunbound 'gura-imenu-generic-expression)
 ;;(makunbound 'gura-outline-regexp)
 
-(defun gura-brace-close ()
-  (interactive)
-  (insert "}")
-  (gura-indent-line))
-
-(defun gura-paren-close ()
-  (interactive)
+(defun gura-insert-close (ch)
+  (insert-char ch)
   (gura-indent-line)
-  (insert ")"))
-
-(defun gura-bracket-close ()
-  (interactive)
-  (insert "]")
-  (gura-indent-line))
+  (blink-matching-open))
+  
+(defun gura-insert-brace-close () (interactive) (gura-insert-close ?\}))
+(defun gura-insert-paren-close () (interactive) (gura-insert-close ?\)))
+(defun gura-insert-bracket-close () (interactive) (gura-insert-close ?\]))
 
 (defvar gura-mode-map
   (let ((map (make-sparse-keymap)))
-	(define-key map "}"		'gura-brace-close)
-	(define-key map ")"		'gura-paren-close)
-	(define-key map "]"		'gura-bracket-close)
+	(define-key map "}"		'gura-insert-brace-close)
+	(define-key map ")"		'gura-insert-paren-close)
+	(define-key map "]"		'gura-insert-bracket-close)
 	map)
   "Keymap for `gura-mode'.")
 
