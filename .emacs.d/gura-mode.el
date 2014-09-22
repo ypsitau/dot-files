@@ -94,11 +94,18 @@
   "Return the column to which the current line should be indented."
   (setq indent-offset 0)
   ;; Check if preceding lines end with a backslash
+  ;;(save-excursion
+	;;(forward-line -1)
+	;;(while (looking-at ".*\\\\\\s-*$")
+	;;  (setq indent-offset gura-continued-line-offset)
+	;;  (forward-line -1)))
   (save-excursion
 	(forward-line -1)
-	(while (looking-at ".*\\\\\\s-*$")
+	(gura-end-of-statement-p)
+	(while (eq (char-before) ?\\)
 	  (setq indent-offset gura-continued-line-offset)
-	  (forward-line -1)))
+	  (forward-line -1)
+	  (gura-end-of-statement-p)))
   ;; Indentation for block
   (save-excursion
 	(gura-end-of-statement-p)
