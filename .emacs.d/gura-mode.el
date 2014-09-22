@@ -13,8 +13,8 @@
 
 (defun gura-paren-close ()
   (interactive)
-  (insert ")")
-  (gura-indent-line))
+  (gura-indent-line)
+  (insert ")"))
 
 (defun gura-bracket-close ()
   (interactive)
@@ -108,9 +108,15 @@
 	(if pos-block-start
 		(save-excursion
 		  (goto-char pos-block-start)
-		  (if (= line-cur (line-number-at-pos))
-			  (+ (current-indentation) indent-offset)
-			(+ (current-indentation) default-tab-width indent-offset)))
+		  (setq column-block-start (current-column))
+		  (or
+		   (if (= line-cur (line-number-at-pos))
+			   (+ (current-indentation) indent-offset))
+		   (if (eq (char-after) ?\()
+;;					 ((skip-syntax-backward "\s-")
+;;					  (eq (char-syntax (char-after)) ?w))))
+			   (+ column-block-start 1))
+		   (+ (current-indentation) default-tab-width indent-offset)))
 	  0)))
 
 (defun foo ()
@@ -119,7 +125,7 @@
 
 (defun foo2 ()
   (interactive)
-  (message "%s" (char-before)))
+  (message "%s" (eq (char-after) ?\()))
 
 
 (add-to-list 'auto-mode-alist '("\\.gura$" . gura-mode))
