@@ -101,7 +101,10 @@
 	  (forward-line -1)))
   ;; Indentation for block
   (save-excursion
-	(beginning-of-line)
+	(gura-end-of-statement-p)
+	(let ((ch (char-before)))
+	  (unless (or (eq (char-syntax ch) ?\() (eq (char-syntax ch) ?\)))
+		(beginning-of-line)))
 	(let* ((line-cur (line-number-at-pos))
 		   (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
 	  (if pos-block-start
@@ -120,7 +123,12 @@
 
 (defun foo ()
   (interactive)
-  (message "%s" (gura-calculate-indentation)))
+  (gura-indent-line))
+
+(defun foo()
+  (interactive)
+  ;;(gura-end-of-statement-p)
+  (message "%s" (char-before)))
 
 (defun gura-end-of-statement-p ()
   "Move to end of statement without a comment."
