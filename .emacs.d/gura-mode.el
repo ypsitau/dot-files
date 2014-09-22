@@ -95,44 +95,31 @@
 
 (defun gura-calculate-indentation ()
   "Return the column to which the current line should be indented."
-  (let* ((line-cur (line-number-at-pos)) (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
-	(if pos-block-start
-		(save-excursion
-		  (goto-char pos-block-start)
-		  (if (= line-cur (line-number-at-pos))
-			  (current-indentation)
-			(+ (current-indentation) default-tab-width)))
-	  0)))
-
-(defun gura-calculate-indentation-1 ()
-  "Return the column to which the current line should be indented."
-  (save-excursion
-	(beginning-of-line)
-	(let ((indent 0))
-	  (if (looking-at ".*}")
-		  (save-excursion
-			(forward-line -1)
-			(if (looking-at ".*{")
-				(setq indent (current-indentation))
-			  (setq indent (- (current-indentation) default-tab-width))))
-		(save-excursion
-		  (let ((continue-flag t))
-			(while continue-flag
-			  (forward-line -1)
-			  (if (looking-at ".*}")
-				  (progn
-					(setq continue-flag nil))
-				(if (looking-at ".*{")
-					(progn
-					  (setq indent (+ (current-indentation) default-tab-width))
-					  (setq continue-flag nil))))
-			  (if (bobp) (setq continue-flag nil)))
-			)))
-	  indent)))
+  (or (save-excursion
+		(setq indent nil)
+		(forward-line -1)
+		(while (looking-at ".*\\\\\\s-*$")
+		  (setq indent (+ (current-indentation) default-tab-width))
+		  (forward-line -1))
+		indent)
+	  (let* ((line-cur (line-number-at-pos))
+			 (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
+		(if pos-block-start
+			(save-excursion
+			  (goto-char pos-block-start)
+			  (if (= line-cur (line-number-at-pos))
+				  (current-indentation)
+				(+ (current-indentation) default-tab-width)))
+		  0))))
 
 (defun foo ()
   (interactive)
-  (gura-indent-line))
+  (message "%s" (gura-calculate-indentation)))
+
+(defun foo2 ()
+  (interactive)
+  (message "%s" (char-before)))
+
 
 (add-to-list 'auto-mode-alist '("\\.gura$" . gura-mode))
 (add-to-list 'auto-mode-alist '("\\.guraw$" . gura-mode))
