@@ -122,10 +122,15 @@
   (interactive)
   (message "%s" (gura-calculate-indentation)))
 
-(defun foo2 ()
-  (interactive)
-  (message "%s" (eq (char-after) ?\()))
-
+(defun gura-end-of-statement-p ()
+  "Move to end of statement without a comment."
+  (beginning-of-line)
+  (if (looking-at "[ \t]*$")
+	  (end-of-line)
+	(progn
+	  (forward-line)
+	  (forward-comment -1)
+	  (skip-syntax-backward "\s-"))))
 
 (add-to-list 'auto-mode-alist '("\\.gura$" . gura-mode))
 (add-to-list 'auto-mode-alist '("\\.guraw$" . gura-mode))
