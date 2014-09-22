@@ -87,6 +87,9 @@
 		(save-excursion (indent-line-to indent))
 	  (indent-line-to indent))))
 
+(defvar gura-continued-line-offset default-tab-width
+  "Offset at top of line continued after backslash.")
+
 (defun gura-calculate-indentation ()
   "Return the column to which the current line should be indented."
   (setq indent-offset 0)
@@ -94,24 +97,26 @@
   (save-excursion
 	(forward-line -1)
 	(while (looking-at ".*\\\\\\s-*$")
-	  (setq indent-offset default-tab-width)
+	  (setq indent-offset gura-continued-line-offset)
 	  (forward-line -1)))
   ;; Indentation for block
-  (let* ((line-cur (line-number-at-pos))
-		 (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
-	(if pos-block-start
-		(save-excursion
-		  (goto-char pos-block-start)
-		  (setq column-block-start (current-column))
-		  (or
-		   (if (= line-cur (line-number-at-pos))
-			   (+ (current-indentation) indent-offset))
-		   (if (eq (char-after) ?\()
-;;					 ((skip-syntax-backward "\s-")
-;;					  (eq (char-syntax (char-after)) ?w))))
-			   (+ column-block-start 1))
-		   (+ (current-indentation) default-tab-width indent-offset)))
-	  0)))
+  (save-excursion
+	(beginning-of-line)
+	(let* ((line-cur (line-number-at-pos))
+		   (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
+	  (if pos-block-start
+		  (progn
+			(goto-char pos-block-start)
+			(setq column-block-start (current-column))
+			(or
+			 (if (= line-cur (line-number-at-pos))
+				 (+ (current-indentation) indent-offset))
+			 (if (eq (char-after) ?\()
+				 ;;					 ((skip-syntax-backward "\s-")
+				 ;;					  (eq (char-syntax (char-after)) ?w))))
+				 (+ column-block-start 1))
+			 (+ (current-indentation) default-tab-width indent-offset)))
+		0))))
 
 (defun foo ()
   (interactive)
