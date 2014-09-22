@@ -94,11 +94,6 @@
   "Return the column to which the current line should be indented."
   (setq indent-offset 0)
   ;; Check if preceding lines end with a backslash
-  ;;(save-excursion
-	;;(forward-line -1)
-	;;(while (looking-at ".*\\\\\\s-*$")
-	;;  (setq indent-offset gura-continued-line-offset)
-	;;  (forward-line -1)))
   (save-excursion
 	(forward-line -1)
 	(gura-end-of-statement-p)
@@ -110,6 +105,7 @@
   (save-excursion
 	(gura-end-of-statement-p)
 	(let ((ch (char-before)))
+	  (message "%s" ch)
 	  (unless (or (eq (char-syntax ch) ?\() (eq (char-syntax ch) ?\)))
 		(beginning-of-line)))
 	(let* ((line-cur (line-number-at-pos))
@@ -122,8 +118,6 @@
 			 (if (= line-cur (line-number-at-pos))
 				 (+ (current-indentation) indent-offset))
 			 (if (eq (char-after) ?\()
-				 ;;					 ((skip-syntax-backward "\s-")
-				 ;;					  (eq (char-syntax (char-after)) ?w))))
 				 (+ column-block-start 1))
 			 (+ (current-indentation) default-tab-width indent-offset)))
 		0))))
