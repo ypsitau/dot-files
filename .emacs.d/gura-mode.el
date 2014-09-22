@@ -105,7 +105,6 @@
   (save-excursion
 	(gura-end-of-statement-p)
 	(let ((ch (char-before)))
-	  (message "%s" ch)
 	  (unless (or (eq (char-syntax ch) ?\() (eq (char-syntax ch) ?\)))
 		(beginning-of-line)))
 	(let* ((line-cur (line-number-at-pos))
@@ -113,23 +112,31 @@
 	  (if pos-block-start
 		  (progn
 			(goto-char pos-block-start)
+			
 			(setq column-block-start (current-column))
 			(or
 			 (if (= line-cur (line-number-at-pos))
 				 (+ (current-indentation) indent-offset))
 			 (if (eq (char-after) ?\()
 				 (+ column-block-start 1))
-			 (+ (current-indentation) default-tab-width indent-offset)))
+			 (progn
+			   (backward-sexp)
+			   (+ (current-indentation) default-tab-width indent-offset))))
 		0))))
 
 (defun foo ()
   (interactive)
-  (gura-indent-line))
+  (backward-sexp))
 
 (defun foo()
   (interactive)
-  ;;(gura-end-of-statement-p)
-  (message "%s" (char-before)))
+  (let* ((line-cur (line-number-at-pos))
+		 (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
+	(if pos-block-start
+		(progn
+		  (goto-char (+ pos-block-start 1))
+		  (while (not (eq (char-before) ?|))
+			(forward-sexp))))))
 
 (defun gura-end-of-statement-p ()
   "Move to end of statement without a comment."
