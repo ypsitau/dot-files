@@ -109,12 +109,23 @@
 			  (+ (current-column) 1))))
 	  (save-excursion
 		(gura-end-of-statement-p)
-		(let* ((line-cur (line-number-at-pos))
+		(let* ((line-cur (line-number-at-pos)) (pos-cur (point))
 			   (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
 		  (if pos-block-start
 			  (progn
 				(goto-char pos-block-start)
 				(or
+				 (if (looking-at (rx "{" (0+ space) "|"))
+					 (save-excursion
+					   (goto-char (match-end 0))
+					   (let ((line-param-start (line-number-at-pos))
+							 (column-param-start (current-column)))
+						 (forward-sexp)
+						 (while (and (not (eq (char-before) ?|)) (< (point) pos-cur))
+						   (forward-sexp))
+						 (if (and (not (eq line-cur line-param-start))
+								  (<= line-cur (line-number-at-pos)))
+							 column-param-start))))
 				 (if (= line-cur (line-number-at-pos))
 					 (+ (current-indentation) indent-offset))
 				 (progn
@@ -139,21 +150,27 @@
 	  (forward-comment -1)
 	  (skip-syntax-backward "\s-"))))
 
-(defun foo()
-  (interactive)
+(defun gura-check-block-param-p ()
   (let* ((line-cur (line-number-at-pos)) (pos-cur (point))
 		 (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
-	(save-excursion
-	  (if pos-block-start
-		  (progn
-			(goto-char pos-block-start)
-			(if (looking-at (rx "{" (0+ space) "|"))
-				(progn
-				  (message "%d" (match-end 0))
-				  (goto-char (match-end 0))
+	(if pos-block-start
+		(save-excursion
+		  (goto-char pos-block-start)
+		  (if (looking-at (rx "{" (0+ space) "|"))
+			  (progn
+				(goto-char (match-end 0))
+				(let ((line-param-start (line-number-at-pos))
+					  (column-param-start (current-column)))
+				  (forward-sexp)
 				  (while (and (not (eq (char-before) ?|)) (< (point) pos-cur))
 					(forward-sexp))
-				  (message "%s" (eq line-cur (line-number-at-pos))))))))))
+				  (if (and (not (eq line-cur line-param-start))
+						   (eq line-cur (line-number-at-pos)))
+					  column-param-start))))))))
+		  
+(defun foo()
+  (interactive)
+  (message "%s" (gura-check-block-param-p)))
 
 (defun foo()
   (interactive)
