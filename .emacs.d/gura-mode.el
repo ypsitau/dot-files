@@ -121,12 +121,14 @@
 				 (+ column-block-start 1))
 			 (progn
 			   (backward-sexp)
+			   (if (eq (char-after) ?=)
+				   (backward-sexp))
 			   (+ (current-indentation) default-tab-width indent-offset))))
 		0))))
 
 (defun foo ()
   (interactive)
-  (backward-sexp))
+  (forward-word))
 
 (defun foo()
   (interactive)
