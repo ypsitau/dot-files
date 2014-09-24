@@ -2,7 +2,7 @@
 
 (makunbound 'gura-mode-map)
 ;;(makunbound 'gura-mode-syntax-table)
-;;(makunbound 'gura-font-lock-keywords)
+(makunbound 'gura-font-lock-keywords)
 ;;(makunbound 'gura-imenu-generic-expression)
 ;;(makunbound 'gura-outline-regexp)
 
@@ -43,7 +43,7 @@
 		  (or
 		   "if" "elsif" "else" "try" "catch" "finally" "raise"
 		   "repeat" "while" "for" "cross" "break" "continue" "return"
-		   "module" "class" "struct" "scope" "public" "extern" "import"
+		   "module" "class" "struct" "scope" "public" "private" "extern" "import"
 		   "super"
 		   "this"
 		   ) symbol-end)
@@ -61,7 +61,7 @@
 	(,(rx symbol-start (group (1+ word)) (0+ space) "(")
 	 (1 font-lock-function-name-face))
 	;; top-level assignment
-	(,(rx line-start (group (1+ word)) (0+ space) "=")
+	(,(rx line-start (group (1+ word)) (? ":" (1+ (or word ","))) (0+ space) "=")
 	 (1 font-lock-variable-name-face)))
   "Keyword highlighting specification for `gura-mode'.")
 
