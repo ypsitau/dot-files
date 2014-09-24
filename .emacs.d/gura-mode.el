@@ -8,7 +8,7 @@
 
 (defun gura-insert-close (ch)
   (insert-char ch)
-  (gura-indent-line)
+  (save-excursion (gura-indent-line))
   (blink-matching-open))
   
 (defun gura-insert-brace-close () (interactive) (gura-insert-close ?\}))
