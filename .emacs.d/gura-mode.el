@@ -41,9 +41,11 @@
 	;; function names for control sequence
 	(,(rx symbol-start
 		  (or
-		   "if" "elsif" "else" "try" "catch"
-		   "repeat" "while" "cross" "break" "continue" "return"
-		   "module" "class" "import"
+		   "if" "elsif" "else" "try" "catch" "finally" "raise"
+		   "repeat" "while" "for" "cross" "break" "continue" "return"
+		   "module" "class" "struct" "scope" "public" "extern" "import"
+		   "super"
+		   "this"
 		   ) symbol-end)
 	 (0 font-lock-keyword-face))
 	;; constant variables
@@ -125,6 +127,16 @@
 				   (+ (current-indentation) default-tab-width indent-offset))))
 			0)))))
 
+(defun gura-end-of-statement-p ()
+  "Move to end of statement without a comment."
+  (beginning-of-line)
+  (if (looking-at "[ \t]*$")
+	  (end-of-line)
+	(progn
+	  (forward-line)
+	  (forward-comment -1)
+	  (skip-syntax-backward "\s-"))))
+
 (defun foo ()
   (interactive)
   (forward-word))
@@ -138,16 +150,6 @@
 		  (goto-char (+ pos-block-start 1))
 		  (while (not (eq (char-before) ?|))
 			(forward-sexp))))))
-
-(defun gura-end-of-statement-p ()
-  "Move to end of statement without a comment."
-  (beginning-of-line)
-  (if (looking-at "[ \t]*$")
-	  (end-of-line)
-	(progn
-	  (forward-line)
-	  (forward-comment -1)
-	  (skip-syntax-backward "\s-"))))
 
 (add-to-list 'auto-mode-alist '("\\.gura$" . gura-mode))
 (add-to-list 'auto-mode-alist '("\\.guraw$" . gura-mode))
