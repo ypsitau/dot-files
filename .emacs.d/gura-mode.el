@@ -139,20 +139,21 @@
 	  (forward-comment -1)
 	  (skip-syntax-backward "\s-"))))
 
-(defun foo ()
-  (setq indent-offset 0)
+(defun foo()
   (interactive)
-  (save-excursion
-	(beginning-of-line)
-	(let ((cont-flag (not (bobp))))
-	  (while cont-flag
-		(forward-line -1)
-		(setq cont-flag (not (bobp)))
-		(gura-end-of-statement-p)
-		(if (eq (char-before) ?\\)
-			(setq indent-offset gura-continued-line-offset)
-		  (setq cont-flag nil)))))
-  (message "%s" indent-offset))
+  (let* ((line-cur (line-number-at-pos)) (pos-cur (point))
+		 (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
+	(save-excursion
+	  (if pos-block-start
+		  (progn
+			(goto-char pos-block-start)
+			(if (looking-at (rx "{" (0+ space) "|"))
+				(progn
+				  (message "%d" (match-end 0))
+				  (goto-char (match-end 0))
+				  (while (and (not (eq (char-before) ?|)) (< (point) pos-cur))
+					(forward-sexp))
+				  (message "%s" (eq line-cur (line-number-at-pos))))))))))
 
 (defun foo()
   (interactive)
