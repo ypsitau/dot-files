@@ -6,20 +6,15 @@
 ;;(makunbound 'gura-imenu-generic-expression)
 ;;(makunbound 'gura-outline-regexp)
 
-(defun gura-insert-close (ch)
-  (insert-char ch)
-  (save-excursion (gura-indent-line))
-  (blink-matching-open))
-  
-(defun gura-insert-brace-close () (interactive) (gura-insert-close ?\}))
-(defun gura-insert-paren-close () (interactive) (gura-insert-close ?\)))
-(defun gura-insert-bracket-close () (interactive) (gura-insert-close ?\]))
+(defun gura-insert-brace-close () (interactive) (gura-insert-close-p ?\}))
+(defun gura-insert-paren-close () (interactive) (gura-insert-close-p ?\)))
+(defun gura-insert-bracket-close () (interactive) (gura-insert-close-p ?\]))
 
 (defvar gura-mode-map
   (let ((map (make-sparse-keymap)))
-	(define-key map "}"		'gura-insert-brace-close)
-	(define-key map ")"		'gura-insert-paren-close)
-	(define-key map "]"		'gura-insert-bracket-close)
+	(define-key map "}" 'gura-insert-brace-close)
+	(define-key map ")" 'gura-insert-paren-close)
+	(define-key map "]" 'gura-insert-bracket-close)
 	map)
   "Keymap for `gura-mode'.")
 
@@ -44,8 +39,7 @@
 		   "if" "elsif" "else" "try" "catch" "finally" "raise"
 		   "repeat" "while" "for" "cross" "break" "continue" "return"
 		   "module" "class" "struct" "scope" "public" "private" "extern" "import"
-		   "super"
-		   "this"
+		   "super" "this"
 		   ) symbol-end)
 	 (0 font-lock-keyword-face))
 	;; constant variables
@@ -97,12 +91,15 @@
   (setq indent-offset 0)
   ;; Check if preceding lines end with a backslash
   (save-excursion
-	(forward-line -1)
-	(gura-end-of-statement-p)
-	(while (eq (char-before) ?\\)
-	  (setq indent-offset gura-continued-line-offset)
-	  (forward-line -1)
-	  (gura-end-of-statement-p)))
+	(beginning-of-line)
+	(let ((cont-flag (not (bobp))))
+	  (while cont-flag
+		(forward-line -1)
+		(setq cont-flag (not (bobp)))
+		(gura-end-of-statement-p)
+		(if (eq (char-before) ?\\)
+			(setq indent-offset gura-continued-line-offset)
+		  (setq cont-flag nil)))))
   ;; Indentation for block
   (or (let* ((syntax (syntax-ppss (line-beginning-position)))
 			 (pos-block-start (nth 1 syntax)))
@@ -125,8 +122,13 @@
 				   (if (eq (char-after) ?=)
 					   (backward-sexp))
 				   (+ (current-indentation) default-tab-width indent-offset))))
-			0)))))
+			indent-offset)))))
 
+(defun gura-insert-close-p (ch)
+  (insert-char ch)
+  (save-excursion (gura-indent-line))
+  (blink-matching-open))
+  
 (defun gura-end-of-statement-p ()
   "Move to end of statement without a comment."
   (beginning-of-line)
@@ -138,19 +140,24 @@
 	  (skip-syntax-backward "\s-"))))
 
 (defun foo ()
+  (setq indent-offset 0)
   (interactive)
-  (forward-word))
+  (save-excursion
+	(beginning-of-line)
+	(let ((cont-flag (not (bobp))))
+	  (while cont-flag
+		(forward-line -1)
+		(setq cont-flag (not (bobp)))
+		(gura-end-of-statement-p)
+		(if (eq (char-before) ?\\)
+			(setq indent-offset gura-continued-line-offset)
+		  (setq cont-flag nil)))))
+  (message "%s" indent-offset))
 
 (defun foo()
   (interactive)
-  (let* ((line-cur (line-number-at-pos))
-		 (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
-	(if pos-block-start
-		(progn
-		  (goto-char (+ pos-block-start 1))
-		  (while (not (eq (char-before) ?|))
-			(forward-sexp))))))
-
+  (message "%s %s %s" (looking-at "{\\s-*|") (match-beginning 0) (match-end 0)))
+ 
 (add-to-list 'auto-mode-alist '("\\.gura$" . gura-mode))
 (add-to-list 'auto-mode-alist '("\\.guraw$" . gura-mode))
 
