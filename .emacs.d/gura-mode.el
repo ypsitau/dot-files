@@ -102,29 +102,28 @@
 	  (forward-line -1)
 	  (gura-end-of-statement-p)))
   ;; Indentation for block
-  (save-excursion
-	(gura-end-of-statement-p)
-	(let ((ch (char-before)))
-	  (unless (or (eq (char-syntax ch) ?\() (eq (char-syntax ch) ?\)))
-		(beginning-of-line)))
-	(let* ((line-cur (line-number-at-pos))
-		   (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
-	  (if pos-block-start
-		  (progn
-			(goto-char pos-block-start)
-			
-			(setq column-block-start (current-column))
-			(or
-			 (if (= line-cur (line-number-at-pos))
-				 (+ (current-indentation) indent-offset))
-			 (if (eq (char-after) ?\()
-				 (+ column-block-start 1))
-			 (progn
-			   (backward-sexp)
-			   (if (eq (char-after) ?=)
-				   (backward-sexp))
-			   (+ (current-indentation) default-tab-width indent-offset))))
-		0))))
+  (or (let* ((syntax (syntax-ppss (line-beginning-position)))
+			 (pos-block-start (nth 1 syntax)))
+		(if (and pos-block-start (eq (char-after pos-block-start) ?\())
+			(save-excursion
+			  (goto-char pos-block-start)
+			  (+ (current-column) 1))))
+	  (save-excursion
+		(gura-end-of-statement-p)
+		(let* ((line-cur (line-number-at-pos))
+			   (syntax (syntax-ppss)) (pos-block-start (nth 1 syntax)))
+		  (if pos-block-start
+			  (progn
+				(goto-char pos-block-start)
+				(or
+				 (if (= line-cur (line-number-at-pos))
+					 (+ (current-indentation) indent-offset))
+				 (progn
+				   (backward-sexp)
+				   (if (eq (char-after) ?=)
+					   (backward-sexp))
+				   (+ (current-indentation) default-tab-width indent-offset))))
+			0)))))
 
 (defun foo ()
   (interactive)
