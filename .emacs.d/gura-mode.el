@@ -1,8 +1,13 @@
 ;;; gura-mode.el --- Gura major mode
 
-(makunbound 'gura-mode-map)
+;;; Copyright (C) 2014 ypsitau
+
+(add-to-list 'auto-mode-alist '("\\.gura$" . gura-mode))
+(add-to-list 'auto-mode-alist '("\\.guraw$" . gura-mode))
+
+;;(makunbound 'gura-mode-map)
 ;;(makunbound 'gura-mode-syntax-table)
-(makunbound 'gura-font-lock-keywords)
+;;(makunbound 'gura-font-lock-keywords)
 ;;(makunbound 'gura-imenu-generic-expression)
 ;;(makunbound 'gura-outline-regexp)
 
@@ -176,7 +181,4 @@
   (interactive)
   (message "%s %s %s" (looking-at "{\\s-*|") (match-beginning 0) (match-end 0)))
  
-(add-to-list 'auto-mode-alist '("\\.gura$" . gura-mode))
-(add-to-list 'auto-mode-alist '("\\.guraw$" . gura-mode))
-
 (provide 'gura-mode)
