@@ -9,7 +9,7 @@ To set up them, do the following commands.
 
     $ cd ~
     $ git clone https://github.com/ypsitau/dot-files.git
-	$ dotfiles/setup.sh
+	$ dot-files/setup.sh
 
 
 Linux Settings
