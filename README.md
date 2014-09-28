@@ -8,7 +8,7 @@ Personal configuration files for ypsitau are stored in GitHub repository.
 To set up them, do the following commands.
 
     $ cd ~
-    $ git clone https://github.com/ypsitau/dotfiles.git
+    $ git clone https://github.com/ypsitau/dot-files.git
 	$ dotfiles/setup.sh
 
 
