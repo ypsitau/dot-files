@@ -1,9 +1,13 @@
-if [ -f /etc/bash_completion.d/git ]; then
-	source /etc/bash_completion.d/git
-elif [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
-	source /usr/share/git-core/contrib/completion/git-prompt.sh
-fi
-
-PS1="\w\$ "
+files="/etc/bash_completion.d/git"
+files="$files /usr/share/git-core/contrib/completion/git-prompt.sh"
+files="$files /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh"
+for file in $files
+do
+	if [ -f $file ] ; then
+		source $file
+		break
+	fi
+done
+PS1="\w\[\033[31m\]\$(__git_ps1)\[\033[00m\]$ "
 alias ll='ls -alF'
 export GURAPATH=gnuc
