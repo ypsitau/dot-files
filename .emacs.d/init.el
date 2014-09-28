@@ -1,29 +1,37 @@
 (add-to-list 'load-path "~/gura/editor/emacs")
 
-(if window-system
-  (progn
-	(setq default-frame-alist
-		  '((width . 90) (height . 45) (top . 0) (left . 0)))
-    (scroll-bar-mode nil)
-    (tool-bar-mode nil)
-    (menu-bar-mode nil)
-	(custom-set-variables
-	 ;; custom-set-variables was added by Custom.
-	 ;; If you edit it by hand, you could mess it up, so be careful.
-	 ;; Your init file should contain only one such instance.
-	 ;; If there is more than one, they won't work right.
-	 '(scroll-bar-mode nil)
-	 '(tool-bar-mode nil))
-	(custom-set-faces
-	 ;; custom-set-faces was added by Custom.
-	 ;; If you edit it by hand, you could mess it up, so be careful.
-	 ;; Your init file should contain only one such instance.
-	 ;; If there is more than one, they won't work right.
-	 '(default ((t (:background "#ffffff" :foreground "#000000"))))
-	 '(cursor ((((class color) (background dark)) (:background "#000000"))
-			   (((class color) (background light)) (:background "#ffffff")) (t nil)))))
-  nil)
-
+(when window-system
+  (setq default-frame-alist
+	'((width . 90) (height . 45) (top . 0) (left . 0)))
+  (scroll-bar-mode nil)
+  (tool-bar-mode nil)
+  (menu-bar-mode nil)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(scroll-bar-mode nil)
+   '(tool-bar-mode nil))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(default ((t (:background "#ffffff" :foreground "#000000"))))
+   '(cursor ((((class color) (background dark)) (:background "#000000"))
+	     (((class color) (background light)) (:background "#ffffff")) (t nil))))
+  (when (eq system-type 'darwin)
+    (set-face-attribute 'default nil
+			:family "Menlo"
+			:height 130)
+    (set-fontset-font nil 'japanese-jisx0208
+		      (font-spec :family "Hiragino Kaku Gothic ProN"))
+    (setq face-font-rescale-alist
+	  '((".*Hiragino_Kaku_Gothic_ProN.*" . 1.2))))
+  (when (eq system-type 'gnu/linux)
+	nil))
+	
 (global-set-key "\C-m" 'newline-and-indent)
 ;;(global-set-key "\C-x\C-a" 'beginning-of-buffer)
 ;;(global-set-key "\C-x\C-e" 'end-of-buffer)
