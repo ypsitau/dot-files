@@ -3,6 +3,8 @@ files=".bashrc .emacs.d .gitconfig .vimrc"
 if [ "${OSTYPE:0:6}" = "darwin" ]; then
 	files="${files} .bash_profile"
 fi
+script_absdir=`dirname "$PWD/${0#./}"`
+script_reldir=${script_absdir#${HOME}/}
 for f in $files; do
 	if [ -L ~/$f ]; then
 		rm ~/$f
@@ -16,5 +18,5 @@ for f in $files; do
 	else
 		echo link $f was newly created.
 	fi
-	ln -s dotfiles-darwin/$f ~/$f
+	ln -s $script_reldir/$f ~/$f
 done
