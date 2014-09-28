@@ -1,8 +1,6 @@
 (add-to-list 'load-path "~/gura/editor/emacs")
 
 (when window-system
-  (setq default-frame-alist
-	'((width . 90) (height . 45) (top . 0) (left . 0)))
   (scroll-bar-mode nil)
   (tool-bar-mode nil)
   (menu-bar-mode nil)
@@ -20,21 +18,24 @@
    ;; If there is more than one, they won't work right.
    '(default ((t (:background "#ffffff" :foreground "#000000"))))
    '(cursor ((((class color) (background dark)) (:background "#000000"))
-	     (((class color) (background light)) (:background "#ffffff")) (t nil))))
+			 (((class color) (background light)) (:background "#ffffff")) (t nil))))
   (when (eq system-type 'darwin)
+	(setq default-frame-alist
+		  '((width . 90) (height . 50) (top . 0) (left . 0)))
     (set-face-attribute 'default nil
-			:family "Menlo"
-			:height 130)
+						:family "Menlo"
+						:height 120)
     (set-fontset-font nil 'japanese-jisx0208
-		      (font-spec :family "Hiragino Kaku Gothic ProN"))
+					  (font-spec :family "Hiragino Kaku Gothic ProN"))
     (setq face-font-rescale-alist
-	  '((".*Hiragino_Kaku_Gothic_ProN.*" . 1.2))))
+		  '((".*Hiragino_Kaku_Gothic_ProN.*" . 1.2))))
   (when (eq system-type 'gnu/linux)
-	nil))
+	(setq default-frame-alist
+		  '((width . 90) (height . 45) (top . 0) (left . 0)))))
 	
 (global-set-key "\C-m" 'newline-and-indent)
-;;(global-set-key "\C-x\C-a" 'beginning-of-buffer)
-;;(global-set-key "\C-x\C-e" 'end-of-buffer)
+(global-set-key "\C-x\C-a" 'beginning-of-buffer)
+(global-set-key "\C-x\C-e" 'end-of-buffer)
 (global-set-key "\C-x\C-p" 'scroll-down)
 (global-set-key "\C-x\C-n" 'scroll-up)
 (global-set-key "\C-x\C-l" 'compile)
@@ -45,10 +46,17 @@
 
 (setq c-default-style "k&r")
 
-(add-hook 'c-mode-common-hook
-		  '(lambda ()
-             (progn
-			   (setq tab-width 4)
-               (setq c-basic-offset 4))))
+(add-hook
+ 'emacs-lisp-mode-hook
+ '(lambda ()
+	(progn
+	  (local-set-key "\C-c\C-e" 'eval-last-sexp))))
+
+(add-hook
+ 'c-mode-common-hook
+ '(lambda ()
+	(progn
+	  (setq tab-width 4)
+	  (setq c-basic-offset 4))))
 
 (require 'gura-mode)
