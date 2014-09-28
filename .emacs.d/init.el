@@ -1,4 +1,4 @@
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/gura/editor/emacs")
 
 (if window-system
   (progn

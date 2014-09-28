@@ -1,5 +1,8 @@
 #!/bin/sh
-files=".bash_profile .bashrc .emacs.d .gitconfig .vimrc"
+files=".bashrc .emacs.d .gitconfig .vimrc"
+if [ "${OSTYPE:0:6}" = "darwin" ]; then
+	files="${files} .bash_profile"
+fi
 for f in $files; do
 	if [ -L ~/$f ]; then
 		rm ~/$f
