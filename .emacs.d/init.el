@@ -3,7 +3,7 @@
 (when window-system
   (scroll-bar-mode nil)
   (tool-bar-mode nil)
-  (menu-bar-mode nil)
+  (menu-bar-mode 0)
   (custom-set-variables
    ;; custom-set-variables was added by Custom.
    ;; If you edit it by hand, you could mess it up, so be careful.
@@ -31,7 +31,7 @@
 		  '((".*Hiragino_Kaku_Gothic_ProN.*" . 1.2))))
   (when (eq system-type 'gnu/linux)
 	(setq default-frame-alist
-		  '((width . 90) (height . 45) (top . 0) (left . 0)))))
+		  '((width . 90) (height . 45) (top . 0) (left . 0) (font . "monospace-11")))))
 	
 (global-set-key "\C-m" 'newline-and-indent)
 (global-set-key "\C-x\C-a" 'beginning-of-buffer)

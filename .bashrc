@@ -1,4 +1,4 @@
-files="/etc/bash_completion.d/git"
+files="/etc/bash_completion.d/git-prompt"
 files="$files /usr/share/git-core/contrib/completion/git-prompt.sh"
 files="$files /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh"
 for file in $files
