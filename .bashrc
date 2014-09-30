@@ -8,6 +8,10 @@ do
 		break
 	fi
 done
+
 PS1="\w\[\033[31m\]\$(__git_ps1)\[\033[00m\]$ "
 alias ll='ls -alF'
 export GURAPATH=gnuc
+export LESS=--tabs=4
+export MORE=--tabs=4
+tabs -4
