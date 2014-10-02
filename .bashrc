@@ -12,8 +12,9 @@ done
 PS1="\w\[\033[31m\]\$(__git_ps1)\[\033[00m\]$ "
 alias ll='ls -alF'
 export GURAPATH=gnuc
-export LESS=--tabs=4
-if [ "${OSTYPE:0:6}"="darwin" ]; then
-	export MORE=--tabs=4
-fi
+# "git diff" can't handle escape sequences with the following settings.
+#export LESS=--tabs=4
+#if [ "${OSTYPE:0:6}"="darwin" ]; then
+#	export MORE=--tabs=4
+#fi
 tabs -4
