@@ -33,14 +33,14 @@
 	(setq default-frame-alist
 		  '((width . 90) (height . 45) (top . 0) (left . 0) (font . "monospace-11")))))
 	
-(global-set-key "\C-m" 'newline-and-indent)
-(global-set-key "\C-x\C-a" 'beginning-of-buffer)
-(global-set-key "\C-x\C-e" 'end-of-buffer)
-(global-set-key "\C-x\C-p" 'scroll-down)
-(global-set-key "\C-x\C-n" 'scroll-up)
-(global-set-key "\C-x\C-l" 'compile)
-(global-set-key "\C-x\C-j" 'goto-line)
-(global-set-key "\C-x\C-y" 'foo)
+(global-set-key (kbd "C-m") 'newline-and-indent)
+(global-set-key (kbd "C-x C-a") 'beginning-of-buffer)
+(global-set-key (kbd "C-x C-e") 'end-of-buffer)
+(global-set-key (kbd "C-x C-p") 'scroll-down)
+(global-set-key (kbd "C-x C-n") 'scroll-up)
+(global-set-key (kbd "C-x C-l") 'compile)
+(global-set-key (kbd "C-x C-j") 'goto-line)
+(global-set-key (kbd "C-x C-y") 'foo)
 
 (setq-default tab-width 4)
 
@@ -50,7 +50,7 @@
  'emacs-lisp-mode-hook
  '(lambda ()
 	(progn
-	  (local-set-key "\C-c\C-e" 'eval-last-sexp))))
+	  (local-set-key (kbd "C-c C-e") 'eval-last-sexp))))
 
 (add-hook
  'c-mode-common-hook
@@ -58,5 +58,13 @@
 	(progn
 	  (setq tab-width 4)
 	  (setq c-basic-offset 4))))
+
+(defun other-window-or-split ()
+  (interactive)
+  (when (one-window-p)
+    (split-window-vertically))
+  (other-window 1))
+
+(global-set-key (kbd "C-t") 'other-window-or-split)
 
 (require 'gura-mode)
