@@ -62,7 +62,7 @@
 (defun other-window-or-split ()
   (interactive)
   (when (one-window-p)
-    (split-window-vertically))
+    (split-window-sensibly (get-buffer-window)))
   (other-window 1))
 
 (global-set-key (kbd "C-t") 'other-window-or-split)
