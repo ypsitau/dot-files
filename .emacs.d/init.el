@@ -1,5 +1,6 @@
 (add-to-list 'load-path "~/gura/editor/emacs")
 
+(require 'whitespace)
 (setq whitespace-style '(face trailing))
 
 (when window-system
