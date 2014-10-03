@@ -41,7 +41,6 @@
 (global-set-key (kbd "C-x C-l") 'compile)
 (global-set-key (kbd "C-x C-y") 'foo)
 (global-set-key (kbd "C-x M-e") 'eval-buffer)
-(global-set-key (kbd "M-s")     'query-replace)
 (global-set-key (kbd "M--")     'whitespace-mode)
 
 (setq-default tab-width 4)
