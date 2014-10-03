@@ -1,5 +1,7 @@
 (add-to-list 'load-path "~/gura/editor/emacs")
 
+(setq whitespace-style '(face trailing))
+
 (when window-system
   (scroll-bar-mode nil)
   (tool-bar-mode nil)
@@ -32,7 +34,7 @@
   (when (eq system-type 'gnu/linux)
 	(setq default-frame-alist
 		  '((width . 90) (height . 45) (top . 0) (left . 0) (font . "monospace-11")))))
-	
+
 (global-set-key (kbd "C-m")     'newline-and-indent)
 (global-set-key (kbd "C-x C-p") 'scroll-down)
 (global-set-key (kbd "C-x C-n") 'scroll-up)
