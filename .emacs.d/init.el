@@ -45,6 +45,11 @@
 (global-set-key (kbd "C-x C-y") 'foo)
 (global-set-key (kbd "C-x M-e") 'eval-buffer)
 (global-set-key (kbd "M--")     'whitespace-mode)
+(global-set-key (kbd "<f5>")      'revert-buffer-noconfirm)
+
+(defun revert-buffer-noconfirm ()
+  (interactive)
+  (revert-buffer nil t))
 
 (setq-default tab-width 4)
 
