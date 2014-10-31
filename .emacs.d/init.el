@@ -53,6 +53,7 @@
 
 (setq-default tab-width 4)
 
+(setq column-number-mode t)
 (setq c-default-style "k&r")
 
 (add-hook
