@@ -61,6 +61,7 @@
  '(lambda ()
 	(progn
 	  (setq tab-width 4)
+	  (c-set-offset 'innamespace 0)	;; no indent in namespace brackets
 	  (setq c-basic-offset 4))))
 
 (require 'gura-mode nil t)
