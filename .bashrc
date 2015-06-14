@@ -12,10 +12,12 @@ done
 PS1="\w\[\033[31m\]\$(__git_ps1)\[\033[00m\]$ "
 alias ll='ls -alF'
 export GURAPATH=gnuc
-export PATH=$PATH:/usr/texbin
+export PATH=$PATH:/usr/texbin:/Users/ypsitau/tools/clang+llvm-3.6.1-x86_64-apple-darwin/bin
+
 # "git diff" can't handle escape sequences with the following settings.
 #export LESS=--tabs=4
 #if [ "${OSTYPE:0:6}"="darwin" ]; then
 #	export MORE=--tabs=4
 #fi
+
 tabs -4
