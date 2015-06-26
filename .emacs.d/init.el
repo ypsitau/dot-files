@@ -1,5 +1,3 @@
-(add-to-list 'load-path "~/gura/editor/emacs")
-
 (require 'whitespace)
 (setq whitespace-style '(face trailing))
 
@@ -64,4 +62,5 @@
 	  (c-set-offset 'innamespace 0)	;; no indent in namespace brackets
 	  (setq c-basic-offset 4))))
 
+(add-to-list 'load-path "~/gura/editor/emacs")
 (require 'gura-mode nil t)
