@@ -62,5 +62,8 @@
 	  (c-set-offset 'innamespace 0)	;; no indent in namespace brackets
 	  (setq c-basic-offset 4))))
 
+(setenv "PATH" (concat (getenv "PATH") "~/bin" "~/tools/clang/bin"))
+(setq exec-path (append exec-path '("~/bin" "~/tools/clang/bin")))
+
 (add-to-list 'load-path "~/gura/editor/emacs")
 (require 'gura-mode nil t)
