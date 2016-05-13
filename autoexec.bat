@@ -1,6 +1,5 @@
 @echo off
 rem call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"
-
 call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
 set DIRCMD=/OG /ON
 path=%path%;C:\Program Files (x86)\TeraPad
