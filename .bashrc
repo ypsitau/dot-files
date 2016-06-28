@@ -10,7 +10,7 @@ do
 done
 
 PS1="\w\[\033[31m\]\$(__git_ps1)\[\033[00m\]$ "
-alias ll='ls -alF'
+alias ll='ls -alFG'
 export GURAPATH=gnuc
 export PATH=$PATH:/usr/texbin:~/bin:~/tools/clang/bin
 
