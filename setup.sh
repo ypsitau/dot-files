@@ -1,5 +1,5 @@
 #!/bin/sh
-files=".bashrc .emacs.d .gitconfig .vimrc .bash_profile"
+files=".bashrc .emacs.d .gitconfig .vimrc .bash_profile .octaverc"
 script_absdir=`dirname "$PWD/${0#./}"`
 script_reldir=${script_absdir#${HOME}/}
 for f in $files; do
