@@ -68,3 +68,14 @@
 
 (add-to-list 'load-path "~/gura/editor/emacs")
 (require 'gura-mode nil t)
+
+;(autoload 'octave-mode "octave-mode" nil t)
+(setq auto-mode-alist
+      (cons '("\\.m$" . octave-mode) auto-mode-alist))
+
+(add-hook 'octave-mode-hook
+          (lambda ()
+            (abbrev-mode 1)
+            (auto-fill-mode 1)
+            (if (eq window-system 'x)
+                (font-lock-mode 1))))
