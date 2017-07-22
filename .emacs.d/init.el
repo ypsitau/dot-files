@@ -22,7 +22,7 @@
 			 (((class color) (background light)) (:background "#ffffff")) (t nil))))
   (when (eq system-type 'darwin)
 	(setq default-frame-alist
-		  '((width . 100) (height . 50) (top . 0) (left . 0)))
+		  '((width . 120) (height . 50) (top . 0) (left . 0)))
     (set-face-attribute 'default nil
 						:family "Menlo"
 						:height 120)
@@ -32,7 +32,7 @@
 		  '((".*Hiragino_Kaku_Gothic_ProN.*" . 1.2))))
   (when (eq system-type 'gnu/linux)
 	(setq default-frame-alist
-		  '((width . 100) (height . 45) (top . 0) (left . 0) (font . "monospace-11")))))
+		  '((width . 120) (height . 45) (top . 0) (left . 0) (font . "monospace-11")))))
 
 (global-set-key (kbd "C-m")     'newline-and-indent)
 (global-set-key (kbd "C-x C-p") 'scroll-down)
