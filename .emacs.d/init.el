@@ -34,6 +34,8 @@
 	(setq default-frame-alist
 		  '((width . 120) (height . 45) (top . 0) (left . 0) (font . "monospace-11")))))
 
+(setq Buffer-menu-name-width 40)
+
 (global-set-key (kbd "C-m")     'newline-and-indent)
 (global-set-key (kbd "C-x C-p") 'scroll-down)
 (global-set-key (kbd "C-x C-n") 'scroll-up)
