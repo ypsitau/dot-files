@@ -65,8 +65,8 @@
 	  (setq c-basic-offset 4))))
 
 (setenv "GURAPATH" "gnuc")
-(setenv "PATH" (concat (getenv "PATH") "~/bin" "~/tools/clang/bin"))
-(setq exec-path (append exec-path '("~/bin" "~/tools/clang/bin")))
+(setenv "PATH" (concat (getenv "PATH") ":" "/usr/local/bin" ":" "~/bin" ":" "~/tools/clang/bin"))
+(setq exec-path (append exec-path '("/usr/local/bin" "~/bin" "~/tools/clang/bin")))
 
 (add-to-list 'load-path "~/gura/editor/emacs")
 (require 'gura-mode nil t)
