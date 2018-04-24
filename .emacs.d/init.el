@@ -32,7 +32,7 @@
 		  '((".*Hiragino_Kaku_Gothic_ProN.*" . 1.2))))
   (when (eq system-type 'gnu/linux)
 	(setq default-frame-alist
-		  '((width . 120) (height . 45) (top . 0) (left . 0) (font . "monospace-11")))))
+		  '((width . 120) (height . 56) (top . 0) (left . 0) (font . "TakaoGothic-10")))))
 
 (setq Buffer-menu-name-width 40)
 
