@@ -11,6 +11,8 @@ done
 
 PS1="\w\[\033[31m\]\$(__git_ps1)\[\033[00m\]$ "
 alias ll='ls -alFG'
+alias gura-genmod='gura -S genmod.gura'
+alias gura-genclass='gura -S genclass.gura'
 export GURAPATH=gnuc
 export PATH=$PATH:/usr/texbin:~/bin:~/tools/clang/bin:~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools
 

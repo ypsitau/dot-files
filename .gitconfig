@@ -9,3 +9,5 @@
 	df = diff
 	lg = log -p
 	hist = log --graph --date=short --pretty=format:'%h %ad  %s%d [%an]'
+[core]
+	autocrlf = input
