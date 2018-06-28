@@ -8,3 +8,7 @@ path=%path%;%USERPROFILE%\gura\guest\buildtools-mswin\7za920
 path=%path%;%USERPROFILE%\gura\guest\buildtools-mswin\curl
 path=%path%;%USERPROFILE%\gura\guest\buildtools-mswin\UnxUtils
 path=%path%;%USERPROFILE%\gura\guest\buildtools-mswin\wix38-binaries
+doskey gura-archive=gura -S archive.gura $*
+doskey gura-genmod=gura -S genmod.gura $*
+doskey gura-genclass=gura -S genclass.gura $*
+doskey gura-grep=gura -S grep.gura $*
