@@ -15,8 +15,13 @@ alias gura-archive='gura -S archive.gura'
 alias gura-genmod='gura -S genmod.gura'
 alias gura-genclass='gura -S genclass.gura'
 alias gura-grep='gura -S grep.gura'
-export GURAPATH=gnuc
-export PATH=$PATH:/usr/texbin:~/bin:~/tools/clang/bin:~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools
+alias mtp-info='gura -S mtp-info.gura'
+alias mtp-ls='gura -S mtp-ls.gura'
+alias mtp-recv='gura -S mtp-recv.gura'
+alias mtp-rm='gura -S mtp-rm.gura'
+alias mtp-send='gura -S mtp-send.gura'
+export GURAPATH=gnuc:../gnuc
+export PATH=$PATH:/usr/local/texlive/2014/bin/x86_64-darwin:~/bin:~/tools/clang/bin:~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools
 
 # "git diff" can't handle escape sequences with the following settings.
 #export LESS=--tabs=4
