@@ -84,6 +84,9 @@
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
+(setq auto-mode-alist
+      (cons '("\\.md$" . html-mode) auto-mode-alist))
+
 (require 'emmet-mode)
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
