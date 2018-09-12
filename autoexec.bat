@@ -5,6 +5,7 @@ set DIRCMD=/OG /ON
 set GURAPATH=msc
 path=%USERPROFILE%\gura\bin-x86;%path%
 path=%path%;C:\Program Files (x86)\TeraPad
+path=%path%;C:\Program Files (x86)\BzEditor
 path=%path%;%USERPROFILE%\gura\guest\buildtools-mswin\7za920
 path=%path%;%USERPROFILE%\gura\guest\buildtools-mswin\curl
 path=%path%;%USERPROFILE%\gura\guest\buildtools-mswin\UnxUtils
