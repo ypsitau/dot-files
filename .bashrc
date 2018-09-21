@@ -24,7 +24,7 @@ alias mtp-rm='gura -S mtp-rm.gura'
 alias mtp-send='gura -S mtp-send.gura'
 alias dump='od -tx1'
 export GURAPATH=gnuc:../gnuc
-export PATH=/usr/local/bin:$PATH:/usr/local/texlive/2014/bin/x86_64-darwin:~/bin:~/tools/clang/bin:~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools
+export PATH=$PATH:/usr/local/texlive/2014/bin/x86_64-darwin:~/bin:~/tools/clang/bin:~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools
 
 # "git diff" can't handle escape sequences with the following settings.
 #export LESS=--tabs=4
