@@ -56,14 +56,6 @@
 (setq column-number-mode t)
 (setq c-default-style "k&r")
 
-(add-hook
- 'c-mode-common-hook
- '(lambda ()
-	(progn
-	  (setq tab-width 4)
-	  (c-set-offset 'innamespace 0)	;; no indent in namespace brackets
-	  (setq c-basic-offset 4))))
-
 (setenv "GURAPATH" "gnuc")
 (setenv "PATH" (concat (getenv "PATH") ":" "/usr/local/bin" ":" "~/bin" ":" "~/tools/clang/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin" "~/bin" "~/tools/clang/bin")))
@@ -75,17 +67,31 @@
 (setq auto-mode-alist
       (cons '("\\.m$" . octave-mode) auto-mode-alist))
 
-(add-hook 'octave-mode-hook
-          (lambda ()
-            (abbrev-mode 1)
-            (auto-fill-mode 1)
-            (if (eq window-system 'x)
-                (font-lock-mode 1))))
+(add-hook
+ 'c-mode-common-hook
+ '(lambda ()
+    (progn
+      (setq tab-width 4)
+      (c-set-offset 'innamespace 0)	;; no indent in namespace brackets
+      (setq c-basic-offset 4))))
+
+(add-hook
+ 'asm-mode-hook
+ (lambda()
+   (setq tab-width 8)))
+
+(add-hook
+ 'octave-mode-hook
+ (lambda ()
+   (abbrev-mode 1)
+   (auto-fill-mode 1)
+   (if (eq window-system 'x)
+       (font-lock-mode 1))))
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
-(setq auto-mode-alist
-      (cons '("\\.md$" . html-mode) auto-mode-alist))
+;(setq auto-mode-alist
+;      (cons '("\\.md$" . html-mode) auto-mode-alist))
 
 (require 'emmet-mode)
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
