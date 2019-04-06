@@ -61,11 +61,17 @@
 (setq exec-path (append exec-path '("/usr/local/bin" "~/bin" "~/tools/clang/bin")))
 
 (add-to-list 'load-path "~/gura/editor/emacs")
-(require 'gura-mode nil t)
+;;(require 'gura-mode nil t)
 
 ;(autoload 'octave-mode "octave-mode" nil t)
 (setq auto-mode-alist
       (cons '("\\.m$" . octave-mode) auto-mode-alist))
+
+(setq auto-mode-alist
+      (cons '("\\.inc$" . asm-mode) auto-mode-alist))
+
+;(setq auto-mode-alist
+;      (cons '("\\.md$" . html-mode) auto-mode-alist))
 
 (add-hook
  'c-mode-common-hook
@@ -89,9 +95,6 @@
        (font-lock-mode 1))))
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
-
-;(setq auto-mode-alist
-;      (cons '("\\.md$" . html-mode) auto-mode-alist))
 
 (require 'emmet-mode)
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
