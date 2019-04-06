@@ -61,7 +61,7 @@
 (setq exec-path (append exec-path '("/usr/local/bin" "~/bin" "~/tools/clang/bin")))
 
 (add-to-list 'load-path "~/gura/editor/emacs")
-;;(require 'gura-mode nil t)
+(require 'gura-mode nil t)
 
 ;(autoload 'octave-mode "octave-mode" nil t)
 (setq auto-mode-alist
