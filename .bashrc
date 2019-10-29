@@ -11,6 +11,12 @@ done
 
 PS1="\w\[\033[31m\]\$(__git_ps1)\[\033[00m\]$ "
 alias ll='ls -alFG'
+alias gurax-archive='gurax -S archive.gura'
+alias gurax-genmod='gurax -S genmod.gura'
+alias gurax-genclass='gurax -S genclass.gura'
+alias gurax-grep='gurax -S grep.gura'
+alias gurax-gendoc-class='gurax -S gendoc-class.gura'
+alias gurax-gendoc-module='gurax -S gendoc-module.gura'
 alias gura-archive='gura -S archive.gura'
 alias gura-genmod='gura -S genmod.gura'
 alias gura-genclass='gura -S genclass.gura'
