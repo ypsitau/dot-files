@@ -23,16 +23,18 @@
   (when (eq system-type 'darwin)
 	(setq default-frame-alist
 		  '((width . 120) (height . 50) (top . 0) (left . 0)))
-    (set-face-attribute 'default nil
-						:family "Menlo"
-						:height 120)
+    (set-face-attribute 'default nil :family "Menlo" :height 120)
     (set-fontset-font nil 'japanese-jisx0208
 					  (font-spec :family "Hiragino Kaku Gothic ProN"))
     (setq face-font-rescale-alist
 		  '((".*Hiragino_Kaku_Gothic_ProN.*" . 1.2))))
   (when (eq system-type 'gnu/linux)
 	(setq default-frame-alist
-		  '((width . 120) (height . 56) (top . 0) (left . 0) (font . "TakaoGothic-10")))))
+		  '((width . 110) (height . 40) (top . 20) (left . 0)))
+    ;(set-face-attribute 'default nil :family "Noto" :height 120)
+	(set-fontset-font nil 'japanese-jisx0208
+					  (font-spec :family "Noto Sans Gothic"))
+	(add-to-list 'face-font-rescale-alist '(".*Noto.*" . 1.2))))
 
 (setq Buffer-menu-name-width 40)
 
