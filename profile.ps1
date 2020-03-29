@@ -7,11 +7,14 @@ $installPath = &"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswher
 Import-Module (Join-Path $installPath "Common7\Tools\Microsoft.VisualStudio.DevShell.dll")
 Enter-VsDevShell -VsInstallPath $installPath -SkipAutomaticLocation
 
+#$Env:GURAX_DIRBASE = "${Home}\source\gurax"
+$Env:GURAX_PATH = "msc"
+
 $Env:Path += ";C:\Program Files\7-zip\"
 $Env:Path += ";C:\Program Files\git\bin\"
 $Env:Path += ";${installPath}\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\"
 $Env:Path += ";${installPath}\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\usr\bin\"
-$Env:Path += ";${HOME}\source\gurax\out\install\x64-Release\bin\"
+$Env:Path += ";${HOME}\Source\gurax\bin\"
 
 function prompt {
     "$($executionContext.SessionState.Path.CurrentLocation)$('>' * ($nestedPromptLevel + 1))";
