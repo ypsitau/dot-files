@@ -1,14 +1,14 @@
 #==============================================================================
 # User Profile for Power Shell
 # Set the link target of PowerShell icon as follows:
-#   PowerShell -NoLogo -NoExit -File Profile.ps1
+#   PowerShell /NoLogo /NoExit /File Profile.ps1
 #==============================================================================
 $installPath = &"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -version 16.0 -property installationpath
 Import-Module (Join-Path $installPath "Common7\Tools\Microsoft.VisualStudio.DevShell.dll")
-Enter-VsDevShell -VsInstallPath $installPath -SkipAutomaticLocation
+Enter-VsDevShell -VsInstallPath $installPath -SkipAutomaticLocation -DevCmdArguments -arch=x64
 
 #$Env:GURAX_DIRBASE = "${Home}\source\gurax"
-$Env:GURAX_PATH = "msc"
+$Env:GURAX_PATH = "mswin"
 
 $Env:Path += ";C:\Program Files\7-zip\"
 $Env:Path += ";C:\Program Files\git\bin\"
@@ -19,3 +19,6 @@ $Env:Path += ";${HOME}\Source\gurax\bin\"
 function prompt {
     "$($executionContext.SessionState.Path.CurrentLocation)$('>' * ($nestedPromptLevel + 1))";
 }
+
+function gurax-genclass { gurax -S genclass.gura $args }
+function gurax-genmod { gurax -S genmod.gura $args }
