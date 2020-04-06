@@ -8,7 +8,7 @@ Import-Module (Join-Path $installPath "Common7\Tools\Microsoft.VisualStudio.DevS
 Enter-VsDevShell -VsInstallPath $installPath -SkipAutomaticLocation -DevCmdArguments -arch=x64
 
 #$Env:GURAX_DIRBASE = "${Home}\source\gurax"
-$Env:GURAX_PATH = "mswin"
+$Env:GURAX_PATH = "build/Debug;build/Release"
 
 $Env:Path += ";C:\Program Files\7-zip\"
 $Env:Path += ";C:\Program Files\git\bin\"
