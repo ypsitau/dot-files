@@ -22,3 +22,5 @@ function prompt {
 
 function gurax-genclass { gurax -S genclass.gura $args }
 function gurax-genmod { gurax -S genmod.gura $args }
+
+function build { cmake --build build $args }
