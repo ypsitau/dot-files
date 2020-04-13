@@ -29,6 +29,8 @@ function build {
 }
 
 function build-Release {
-    if (-not(Test-Path "build-Release")) { cmake . -G Ninja -B build-Release }
+    if (-not(Test-Path "build-Release")) {
+        cmake . -G Ninja -B build-Release -DCMAKE_BUILD_TYPE=Release
+    }
     ninja -C build-Release $args
 }
