@@ -8,7 +8,7 @@ Import-Module (Join-Path $installPath "Common7\Tools\Microsoft.VisualStudio.DevS
 Enter-VsDevShell -VsInstallPath $installPath -SkipAutomaticLocation -DevCmdArguments -arch=x64
 
 #$Env:GURAX_DIRBASE = "${Home}\source\gurax"
-$Env:GURAX_PATH = "build"
+$Env:GURAX_PATH = "build;build-Release"
 
 $Env:Path += ";C:\Program Files\7-zip\"
 $Env:Path += ";C:\Program Files\git\bin\"
@@ -26,4 +26,9 @@ function gurax-genmod { gurax -S genmod.gura $args }
 function build {
     if (-not(Test-Path "build")) { cmake . -G Ninja -B build }
     ninja -C build $args
+}
+
+function build-Release {
+    if (-not(Test-Path "build-Release")) { cmake . -G Ninja -B build-Release }
+    ninja -C build-Release $args
 }
