@@ -40,4 +40,4 @@ export PATH=$PATH:/usr/local/texlive/2014/bin/x86_64-darwin:~/bin:~/tools/clang/
 #	export MORE=--tabs=4
 #fi
 
-tabs -4
+#tabs -4
