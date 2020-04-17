@@ -15,4 +15,4 @@ $Env:Path += ";${installPath}\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake
 $Env:Path += ";${installPath}\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\usr\bin\"
 $Env:Path += ";${HOME}\Source\gurax\bin\"
 
-. ./def-functions.ps1
+. ${HOME}\dot-files\def-function.ps1
