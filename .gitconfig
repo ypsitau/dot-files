@@ -11,3 +11,10 @@
 	hist = log --graph --date=short --pretty=format:'%h %ad  %s%d [%an]'
 [core]
 	autocrlf = input
+[color]
+	ui = auto
+[color "diff"]
+	meta = white
+	frag = cyan bold
+	old = red bold
+	new = green bold
