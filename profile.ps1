@@ -14,7 +14,5 @@ $Env:Path += ";C:\Program Files\git\bin\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\usr\bin\"
 $Env:Path += ";$HOME\Source\gurax\bin\"
-#$Env:Path += ";$HOME\Source\gurax\build\src\gurax\"
-#$Env:Path += ";$HOME\Source\gurax\build\src\lib\"
 
 . $PSScriptRoot\def-function.ps1
