@@ -24,11 +24,18 @@ function build-Release {
 }
 
 function create-patch-vs {
-    Param([parameter(mandatory)][string]$zip, [parameter(mandatory)][string]$path)
+    Param([parameter(mandatory)][string]$fileNameOut, [parameter(mandatory)][string]$path)
     $pathNames = Foreach ($fileName in (Get-ChildItem -path $path -recurse -include ('*.vcxproj', '*.sln') -name)) {
         Join-Path ($path -replace "^.\\","") $fileName
     }
     echo $pathNames
-    if (Test-Path $zip) { del $zip }
-    7z a $zip $pathNames
+    if (Test-Path $fileNameOut) { del $fileNameOut }
+    if ($fileNameOut.EndsWith(".tar.gz")) {
+        $fileNameTar = $fileNameOut.Substring(0, $fileNameOut.Length - 3)
+        7z a $fileNameTar $pathNames
+        7z a $fileNameOut $fileNameTar
+        if (Test-Path $fileNameTar) { del $fileNameTar }
+    } else {
+        7z a $fileNameOut $pathNames
+    }
 }
