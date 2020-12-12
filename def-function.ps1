@@ -10,6 +10,7 @@ function gurax-base64decode { gurax -S base64decode.gura $args }
 function gurax-diff { gurax -S diff-s.gura $args }
 function gurax-genclass { gurax -S genclass.gura $args }
 function gurax-genmod { gurax -S genmod.gura $args }
+function gurax-dump { gurax -S dump.gura $args }
 
 function build {
     if (-not(Test-Path "build")) { cmake . -G Ninja -B build }
