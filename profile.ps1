@@ -14,6 +14,6 @@ $Env:Path += ";C:\Program Files\git\bin\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\usr\bin\"
 $Env:Path += ";$HOME\Source\gurax\bin\"
-$Env:Path += ";$Env:LOCALAPPDATA\Programs\Arduino IDE\resources\app\lib\backend\resources\"
+$Env:Path += ";C:\Program Files\Arduino IDE\resources\app\lib\backend\resources\"
 
 . $PSScriptRoot\def-function.ps1
