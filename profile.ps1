@@ -15,5 +15,6 @@ $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\usr\bin\"
 $Env:Path += ";$HOME\Source\gurax\bin\"
 $Env:Path += ";C:\Program Files\Arduino IDE\resources\app\lib\backend\resources\"
+$Env:Path += ";$Env:LOCALAPPDATA\Arduino15\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7\bin\"
 
 . $PSScriptRoot\def-function.ps1
