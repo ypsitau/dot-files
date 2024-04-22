@@ -12,6 +12,21 @@ function gurax-genclass { gurax -S genclass.gura $args }
 function gurax-genmod { gurax -S genmod.gura $args }
 function gurax-dump { gurax -S dump.gura $args }
 
+function arduino-compile {
+    arduino-cli compile --fqbn arduino:avr:pro --build-path build $args
+    gurax "$Env:USERPROFILE\source\Arduino\script\arduino-genasm.gura" build
+}
+
+function arduino-upload {
+    arduino-cli compile --fqbn arduino:avr:pro --build-path build --upload --port com5 $args
+    gurax "$Env:USERPROFILE\source\Arduino\script\arduino-genasm.gura" build
+}
+
+function avrdude-p {
+    avrdude -C "$Env:LOCALAPPDATA\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino17\etc\avrdude.conf" `
+        -c arduino -P com5 -b 57600 -p atmega328p $args
+}
+
 function build {
     if (-not(Test-Path "build")) { cmake . -G Ninja -B build }
     ninja -C build $args
