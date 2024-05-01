@@ -14,7 +14,8 @@ $Env:Path += ";C:\Program Files\git\bin\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\usr\bin\"
 $Env:Path += ";$HOME\Source\gurax\bin\"
-$Env:Path += ";C:\Program Files\Arduino IDE\resources\app\lib\backend\resources\"
+# Arduino
+$Env:Path += ";C:\Program Files\arduino-cli\"
 $Env:Path += ";$Env:LOCALAPPDATA\Arduino15\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7\bin\"
 $Env:Path += ";$Env:LOCALAPPDATA\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino17\bin\"
 
