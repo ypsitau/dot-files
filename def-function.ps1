@@ -12,6 +12,10 @@ function gurax-genclass { gurax -S genclass.gura $args }
 function gurax-genmod { gurax -S genmod.gura $args }
 function gurax-dump { gurax -S dump.gura $args }
 
+function arduino-genasm {
+    gurax "$Env:USERPROFILE\source\Arduino\script\arduino-genasm.gura" $args
+}
+
 function arduino-compile {
     arduino-cli compile --fqbn arduino:avr:pro --build-path build $args
     gurax "$Env:USERPROFILE\source\Arduino\script\arduino-genasm.gura" build
