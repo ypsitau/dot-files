@@ -9,7 +9,7 @@ do
 	fi
 done
 
-PS1="\w\[\033[31m\]\$(__git_ps1)\[\033[00m\]$ "
+PS1="\[033[01:32m\]\h\[\033[00m\]:\w\[\033[31m\]\$(__git_ps1)\[\033[00m\]$ "
 alias ll='ls -alFG'
 alias gurax-archive='gurax -S archive.gura'
 alias gurax-genmod='gurax -S genmod.gura'
