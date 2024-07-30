@@ -14,6 +14,8 @@ $Env:Path += ";C:\Program Files\git\bin\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\usr\bin\"
 $Env:Path += ";$HOME\Source\gurax\bin\"
+# Raspberry Pi Pico
+$Env:Path += ";C:\Program Files (x86)\Arm GNU Toolchain arm-none-eabi\13.3 rel1\bin"
 # Arduino
 $Env:Path += ";C:\Program Files\arduino-cli\"
 $Env:Path += ";C:\Program Files\avrdude\"
