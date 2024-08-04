@@ -18,6 +18,8 @@ $Env:Path += ";$HOME\source\gurax\bin\"
 $Env:PICO_SDK_PATH = "$HOME\.pico-sdk\sdk\1.5.1"
 $Env:PICO_TOOLCHAIN_PATH = "$HOME\.pico-sdk\toolchain\13_2_Rel1\bin"
 $Env:Path += ";$Env:PICO_TOOLCHAIN_PATH"
+$Env:Path += ";$HOME\.pico-sdk\openocd\v0.12.0-2\bin"
+$Env:Path += ";$HOME\.pico-sdk\tools\1.5.1"
 # Arduino
 $Env:Path += ";C:\Program Files\arduino-cli\"
 $Env:Path += ";C:\Program Files\avrdude\"

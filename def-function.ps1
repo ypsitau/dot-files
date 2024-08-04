@@ -12,6 +12,18 @@ function gurax-genclass { gurax -S genclass.gura $args }
 function gurax-genmod { gurax -S genmod.gura $args }
 function gurax-dump { gurax -S dump.gura $args }
 
+function pico-ocd {
+    openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 5000"
+}
+
+function pico-gdb {
+    arm-none-eabi-gdb -q -ex "target remote localhost:3333" -ex "monitor reset init" -ex "load" $args
+}
+
+function pico-run {
+    arm-none-eabi-gdb -q -ex "target remote localhost:3333" -ex "monitor reset init" -ex "load" -ex "continue" $args
+}
+
 function arduino-genasm {
     gurax "$Env:USERPROFILE\source\Arduino\script\arduino-genasm.gura" $args
 }
