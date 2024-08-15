@@ -15,11 +15,11 @@ $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\usr\bin\"
 $Env:Path += ";$HOME\source\gurax\bin\"
 # Raspberry Pi Pico
-$Env:PICO_SDK_PATH = "$HOME\.pico-sdk\sdk\1.5.1"
+$Env:PICO_SDK_PATH = "$HOME\.pico-sdk\sdk\2.0.0"
 $Env:PICO_TOOLCHAIN_PATH = "$HOME\.pico-sdk\toolchain\13_2_Rel1\bin"
 $Env:Path += ";$Env:PICO_TOOLCHAIN_PATH"
-$Env:Path += ";$HOME\.pico-sdk\openocd\v0.12.0-2\bin"
-$Env:Path += ";$HOME\.pico-sdk\tools\1.5.1"
+$Env:Path += ";$HOME\.pico-sdk\openocd\0.12.0+dev"
+$Env:Path += ";$HOME\.pico-sdk\tools\2.0.0"
 # Arduino
 $Env:Path += ";C:\Program Files\arduino-cli\"
 $Env:Path += ";C:\Program Files\avrdude\"
