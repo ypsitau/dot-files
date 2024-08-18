@@ -20,6 +20,7 @@ $Env:PICO_TOOLCHAIN_PATH = "$HOME\.pico-sdk\toolchain\13_2_Rel1\bin"
 $Env:Path += ";$Env:PICO_TOOLCHAIN_PATH"
 $Env:Path += ";$HOME\.pico-sdk\openocd\0.12.0+dev"
 $Env:Path += ";$HOME\.pico-sdk\tools\2.0.0"
+$Env:Path += ";$HOME\.pico-sdk\picotool\2.0.0\picotool"
 # Arduino
 $Env:Path += ";C:\Program Files\arduino-cli\"
 $Env:Path += ";C:\Program Files\avrdude\"
