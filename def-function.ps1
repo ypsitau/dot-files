@@ -12,6 +12,8 @@ function gurax-genclass { gurax -S genclass.gura $args }
 function gurax-genmod { gurax -S genmod.gura $args }
 function gurax-dump { gurax -S dump.gura $args }
 
+function stop-exploer { stop-process -name explorer }
+
 function pico-ocd {
     openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 5000"
 }
