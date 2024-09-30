@@ -14,6 +14,7 @@ $Env:Path += ";C:\Program Files\git\bin\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\usr\bin\"
 $Env:Path += ";$HOME\source\gurax\bin\"
+$Env:Path += ";$HOME\bin\"
 # Raspberry Pi Pico
 $Env:PICO_SDK_PATH = "$HOME\.pico-sdk\sdk\2.0.0"
 $Env:PICO_TOOLCHAIN_PATH = "$HOME\.pico-sdk\toolchain\13_2_Rel1\bin"
