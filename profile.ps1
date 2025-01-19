@@ -7,7 +7,7 @@ $dirNameVsDev = &"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhe
 Import-Module (Join-Path $dirNameVsDev "Common7\Tools\Microsoft.VisualStudio.DevShell.dll")
 Enter-VsDevShell -VsInstallPath $dirNameVsDev -SkipAutomaticLocation -DevCmdArguments -arch=x64
 
-#$Env:GURAX_PATH = "script;build\Debug;build\Release"
+$Env:GURAX_PATH = "build\Debug;build\Release"
 
 $Env:Path += ";C:\Program Files\7-zip\"
 $Env:Path += ";C:\Program Files\git\bin\"
@@ -16,12 +16,12 @@ $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\TeamFoundati
 $Env:Path += ";$HOME\source\gurax\bin\"
 $Env:Path += ";$HOME\bin\"
 # Raspberry Pi Pico
-$Env:PICO_SDK_PATH = "$HOME\.pico-sdk\sdk\2.0.0"
-$Env:PICO_TOOLCHAIN_PATH = "$HOME\.pico-sdk\toolchain\13_2_Rel1\bin"
+$Env:PICO_SDK_PATH = "$HOME\.pico-sdk\sdk\2.1.0"
+$Env:PICO_TOOLCHAIN_PATH = "$HOME\.pico-sdk\toolchain\13_3_Rel1\bin"
 $Env:Path += ";$Env:PICO_TOOLCHAIN_PATH"
+$Env:Path += ";$HOME\.pico-sdk\picotool\2.1.0\picotool"
+$Env:Path += ";$HOME\.pico-sdk\tools\2.1.0\pioasm"
 $Env:Path += ";$HOME\.pico-sdk\openocd\0.12.0+dev"
-$Env:Path += ";$HOME\.pico-sdk\tools\2.0.0"
-$Env:Path += ";$HOME\.pico-sdk\picotool\2.0.0\picotool"
 # Arduino
 $Env:Path += ";C:\Program Files\arduino-cli\"
 $Env:Path += ";C:\Program Files\avrdude\"
