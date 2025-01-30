@@ -11,6 +11,7 @@ $Env:GURAX_PATH = "build\Debug;build\Release"
 
 $Env:Path += ";C:\Program Files\7-zip\"
 $Env:Path += ";C:\Program Files\git\bin\"
+$Env:Path += ";C:\Program Files (x86)\BzEditor\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\usr\bin\"
 $Env:Path += ";$HOME\source\gurax\bin\"
