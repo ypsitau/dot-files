@@ -5,6 +5,9 @@ function prompt {
     "$($executionContext.SessionState.Path.CurrentLocation)$('>' * ($nestedPromptLevel + 1))";
 }
 
+function zenn-preview { npx zenn preview }
+
+function zenn-new { npx zenn new:article --slug $args }
 function gurax-base64encode { gurax -S base64encode.gura $args }
 function gurax-base64decode { gurax -S base64decode.gura $args }
 function gurax-diff { gurax -S diff-s.gura $args }
