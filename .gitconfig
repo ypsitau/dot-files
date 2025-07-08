@@ -20,3 +20,5 @@
 	new = green bold
 [credential]
 	helper = store
+[push]
+	followTags = true
