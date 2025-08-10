@@ -9,6 +9,7 @@ Enter-VsDevShell -VsInstallPath $dirNameVsDev -SkipAutomaticLocation -DevCmdArgu
 
 $Env:GURAX_PATH = "build\Debug;build\Release"
 
+$Env:Path += ";C:\Program Files\sigrok\sigrok-cli\"
 $Env:Path += ";C:\Program Files\7-zip\"
 $Env:Path += ";C:\Program Files\git\bin\"
 $Env:Path += ";C:\Program Files (x86)\BzEditor\"
