@@ -16,7 +16,6 @@ $Env:Path += ";C:\Program Files (x86)\BzEditor\"
 $Env:Path += ";C:\Program Files\mosquitto\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\usr\bin\"
-$Env:Path += ";$HOME\source\gurax\bin\"
 $Env:Path += ";$HOME\bin\"
 $Env:Path += ";$HOME\source\tools\bin\"
 # Raspberry Pi Pico

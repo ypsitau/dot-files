@@ -1,6 +1,8 @@
 #==============================================================================
 # User functions for Power Shell
 #==============================================================================
+function gurax-dev { C:\Users\ypsit\source\gurax\bin\gurax $args }
+
 function prompt {
     "$($executionContext.SessionState.Path.CurrentLocation)$('>' * ($nestedPromptLevel + 1))";
 }
