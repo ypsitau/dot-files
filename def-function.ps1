@@ -1,7 +1,10 @@
 #==============================================================================
 # User functions for Power Shell
 #==============================================================================
-function gurax-dev { C:\Users\ypsit\source\gurax\bin\gurax $args }
+function gurax-dev {
+    $Env:Path = "$HOME\source\gurax\bin\;$Env:Path"
+    $Env:GURAX_PATH = "build\Debug;build\Release"
+}
 
 function prompt {
     "$($executionContext.SessionState.Path.CurrentLocation)$('>' * ($nestedPromptLevel + 1))";

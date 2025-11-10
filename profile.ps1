@@ -7,8 +7,6 @@ $dirNameVsDev = &"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhe
 Import-Module (Join-Path $dirNameVsDev "Common7\Tools\Microsoft.VisualStudio.DevShell.dll")
 Enter-VsDevShell -VsInstallPath $dirNameVsDev -SkipAutomaticLocation -DevCmdArguments -arch=x64
 
-$Env:GURAX_PATH = "build\Debug;build\Release"
-
 $Env:Path += ";C:\Program Files\sigrok\sigrok-cli\"
 $Env:Path += ";C:\Program Files\7-zip\"
 $Env:Path += ";C:\Program Files\git\bin\"
