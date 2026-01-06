@@ -26,6 +26,7 @@ $Env:Path += ";$HOME\.pico-sdk\cmake\v3.31.5\bin\"
 $Env:Path += ";$HOME\.pico-sdk\picotool\2.1.1\picotool"
 $Env:Path += ";$HOME\.pico-sdk\tools\2.1.1\pioasm"
 $Env:Path += ";$HOME\.pico-sdk\openocd\0.12.0+dev"
+$Env:Path += ";$HOME\AppData\Local\Programs\netron"
 # Arduino
 $Env:Path += ";C:\Program Files\arduino-cli\"
 $Env:Path += ";C:\Program Files\avrdude\"
