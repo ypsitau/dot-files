@@ -11,6 +11,7 @@ $Env:Path += ";$HOME\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13
 $Env:Path += ";C:\Program Files\sigrok\sigrok-cli\"
 $Env:Path += ";C:\Program Files\7-zip\"
 $Env:Path += ";C:\Program Files\git\bin\"
+$Env:Path += ";C:\Program Files\git\usr\bin\"
 $Env:Path += ";C:\Program Files (x86)\BzEditor\"
 $Env:Path += ";C:\Program Files\mosquitto\"
 $Env:Path += ";$dirNameVsDev\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\"
