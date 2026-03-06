@@ -34,3 +34,23 @@ $Env:Path += ";$Env:LOCALAPPDATA\Arduino15\packages\arduino\tools\avr-gcc\7.3.0-
 #$Env:Path += ";$Env:LOCALAPPDATA\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino17\bin\"
 
 . $PSScriptRoot\def-function.ps1
+
+$Host.UI.RawUI.BackgroundColor = "White"
+$Host.UI.RawUI.ForegroundColor = "Black"
+
+Import-Module PSReadLine
+$Monochrome = "Black"
+
+Set-PSReadLineOption -Colors @{
+    Command            = $Monochrome
+    Parameter          = $Monochrome
+    Operator           = $Monochrome
+    Variable           = $Monochrome
+    String             = $Monochrome
+    Number             = $Monochrome
+    Type               = $Monochrome
+    Member             = $Monochrome
+    Emphasis           = $Monochrome
+    Error              = "DarkRed"
+    InlinePrediction   = "Gray"
+}
