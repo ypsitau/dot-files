@@ -35,12 +35,11 @@ $Env:Path += ";$Env:LOCALAPPDATA\Arduino15\packages\arduino\tools\avr-gcc\7.3.0-
 
 . $PSScriptRoot\def-function.ps1
 
+$PSStyle.OutputRendering = "PlainText"
 $Host.UI.RawUI.BackgroundColor = "White"
 $Host.UI.RawUI.ForegroundColor = "Black"
-
 Import-Module PSReadLine
 $Monochrome = "Black"
-
 Set-PSReadLineOption -Colors @{
     Command            = $Monochrome
     Parameter          = $Monochrome
