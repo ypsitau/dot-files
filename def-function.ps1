@@ -10,6 +10,7 @@ function prompt {
     "$($executionContext.SessionState.Path.CurrentLocation)$('>' * ($nestedPromptLevel + 1))";
 }
 
+function mkdocs-serve { mkdocs serve --livereload }
 function zenn-preview { npx zenn preview }
 
 function zenn-new { npx zenn new:article --slug $args }
