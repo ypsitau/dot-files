@@ -35,6 +35,8 @@ $Env:Path += ";C:\Program Files\avrdude\"
 $Env:Path += ";$Env:LOCALAPPDATA\Arduino15\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7\bin\"
 #$Env:Path += ";$Env:LOCALAPPDATA\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino17\bin\"
 
+$Env:EDITOR = "$HOME\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+
 . $PSScriptRoot\def-function.ps1
 
 $PSStyle.OutputRendering = "PlainText"
@@ -43,15 +45,15 @@ $Host.UI.RawUI.ForegroundColor = "Black"
 Import-Module PSReadLine
 $Monochrome = "Black"
 Set-PSReadLineOption -Colors @{
-    Command            = $Monochrome
-    Parameter          = $Monochrome
-    Operator           = $Monochrome
-    Variable           = $Monochrome
-    String             = $Monochrome
-    Number             = $Monochrome
-    Type               = $Monochrome
-    Member             = $Monochrome
-    Emphasis           = $Monochrome
-    Error              = "DarkRed"
-    InlinePrediction   = "Gray"
+    Command          = $Monochrome
+    Parameter        = $Monochrome
+    Operator         = $Monochrome
+    Variable         = $Monochrome
+    String           = $Monochrome
+    Number           = $Monochrome
+    Type             = $Monochrome
+    Member           = $Monochrome
+    Emphasis         = $Monochrome
+    Error            = "DarkRed"
+    InlinePrediction = "Gray"
 }
