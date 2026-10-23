@@ -57,3 +57,5 @@ Set-PSReadLineOption -Colors @{
     Error            = "DarkRed"
     InlinePrediction = "Gray"
 }
+
+$PSDefaultParameterValues['Remove-Item:Force'] = $true
